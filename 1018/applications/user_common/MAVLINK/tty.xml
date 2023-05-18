@@ -1,0 +1,293 @@
+<?xml version="1.0"?>
+<mavlink>
+  <version>3</version>
+  <enums>
+	<enum name="SYS_TYPE">
+		<entry value="0" name="SYS_ALL">
+			<description>全系统</description>
+		</entry>	
+		<entry value="1" name="SYS_UAV">
+			<description>无人机</description>
+		</entry>
+		<entry value="2" name="SYS_USV">
+			<description>无人船</description>
+		</entry>
+		<entry value="3" name="SYS_UGV">
+			<description>无人车</description>
+		</entry>
+		<entry value="254" name="SYS_ROCKER">
+			<description>摇杆</description>
+		</entry>
+		<entry value="255" name="SYS_GSTATION">
+			<description>地面站</description>
+		</entry>
+	</enum>
+	<enum name="PARAM_TYPE">
+		<entry value="0" name="PARAM_LIST_REQUEST">
+		</entry>		
+		<entry name="PARAM_ROLL_INNER_P">
+		</entry>
+		<entry name="PARAM_ROLL_INNER_I">
+		</entry>
+		<entry name="PARAM_ROLL_INNER_D">
+		</entry>
+		<entry name="PARAM_ROLL_OUTER_P">
+		</entry>
+		<entry name="PARAM_ROLL_OUTER_I">
+		</entry>
+		<entry name="PARAM_ROLL_OUTER_D">
+		</entry>
+		<entry name="PARAM_PITCH_INNER_P">
+		</entry>
+		<entry name="PARAM_PITCH_INNER_I">
+		</entry>
+		<entry name="PARAM_PITCH_INNER_D">
+		</entry>
+		<entry name="PARAM_PITCH_OUTER_P">
+		</entry>
+		<entry name="PARAM_PITCH_OUTER_I">
+		</entry>
+		<entry name="PARAM_PITCH_OUTER_D">
+		</entry>
+		<entry name="PARAM_YAW_INNER_P">
+		</entry>
+		<entry name="PARAM_YAW_INNER_I">
+		</entry>
+		<entry name="PARAM_YAW_INNER_D">
+		</entry>
+		<entry name="PARAM_YAW_OUTER_P">
+		</entry>
+		<entry name="PARAM_YAW_OUTER_I">
+		</entry>
+		<entry name="PARAM_YAW_OUTER_D">
+		</entry>
+		<entry name="PARAM_ACC_OFFSET_X">
+		</entry>
+		<entry name="PARAM_ACC_OFFSET_Y">
+		</entry>
+		<entry name="PARAM_ACC_OFFSET_Z">
+		</entry>
+		<entry name="PARAM_ACC_GAIN_INV_X">
+		</entry>
+		<entry name="PARAM_ACC_GAIN_INV_Y">
+		</entry>
+		<entry name="PARAM_ACC_GAIN_INV_Z">
+		</entry>
+		<entry name="PARAM_GYRO_OFFSET_X">
+		</entry>
+		<entry name="PARAM_GYRO_OFFSET_Y">
+		</entry>
+		<entry name="PARAM_GYRO_OFFSET_Z">
+		</entry>	
+		<entry name="PARAM_MAG_OFFSET_X">
+		</entry>
+		<entry name="PARAM_MAG_OFFSET_Y">
+		</entry>
+		<entry name="PARAM_MAG_OFFSET_Z">
+		</entry>
+		<entry name="PARAM_MAG_GAIN_INV_X">
+		</entry>
+		<entry name="PARAM_MAG_GAIN_INV_Y">
+		</entry>
+		<entry name="PARAM_MAG_GAIN_INV_Z">
+		</entry>
+		<entry name="PARAM_HORIZ_OFFSET_X">
+		</entry>
+		<entry name="PARAM_HORIZ_OFFSET_Y">
+		</entry>
+		<entry name="PARAM_HORIZ_OFFSET_Z">
+		</entry>
+		<entry name="PARAM_X_INNER_P">
+		</entry>		
+		<entry name="PARAM_X_INNER_I">
+		</entry>	
+		<entry name="PARAM_X_INNER_D">
+		</entry>
+		<entry name="PARAM_X_OUTER_P">
+		</entry>
+		<entry name="PARAM_X_OUTER_I">
+		</entry>		
+		<entry name="PARAM_X_OUTER_D">
+		</entry>	
+		<entry name="PARAM_Y_INNER_P">
+		</entry>		
+		<entry name="PARAM_Y_INNER_I">
+		</entry>	
+		<entry name="PARAM_Y_INNER_D">
+		</entry>
+		<entry name="PARAM_Y_OUTER_P">
+		</entry>
+		<entry name="PARAM_Y_OUTER_I">
+		</entry>		
+		<entry name="PARAM_Y_OUTER_D">
+		</entry>
+		<entry name="PARAM_Z_INNER_P">
+		</entry>		
+		<entry name="PARAM_Z_INNER_I">
+		</entry>	
+		<entry name="PARAM_Z_INNER_D">
+		</entry>
+		<entry name="PARAM_Z_OUTER_P">
+		</entry>
+		<entry name="PARAM_Z_OUTER_I">
+		</entry>		
+		<entry name="PARAM_Z_OUTER_D">
+		</entry>
+		<entry name="PARAM_USV_SPEED_P">
+		</entry>
+		<entry name="PARAM_USV_SPEED_I">
+		</entry>
+		<entry name="PARAM_USV_SPEED_D">
+		</entry>
+		<entry name="PARAM_USV_HEADING_P">
+		</entry>
+		<entry name="PARAM_USV_HEADING_I">
+		</entry>
+		<entry name="PARAM_USV_HEADING_D">
+		</entry>
+	</enum>
+	<enum name="CMD_TYPE">
+		<entry value="1" name="CMD_UNLOCK">
+		</entry>
+		<entry name="CMD_LOCK">
+		</entry>	
+		<entry name="CMD_TAKEOFF">
+		</entry>
+		<entry name="CMD_LAND">
+		</entry>
+		<entry name="CMD_GYRO_OFFSET">
+		</entry>
+		<entry name="CMD_ACC_OFFSET">
+		</entry>
+		<entry name="CMD_MAG_OFFSET">
+		</entry>
+		<entry name="CMD_BARO_OFFSET">
+		</entry>
+		<entry name="CMD_HORIZ_OFFSET">
+		</entry>
+		<entry name="CMD_YAW_OFFSET">
+		</entry>
+	</enum>
+	<enum name="CMD_ACK_FLAG">
+		<entry value="1" name="CMD_ACK_WRITE_SUCESSED">
+		</entry>
+		<entry name="CMD_ACK_WRITE_FAILED">
+		</entry>
+		<entry name="CMD_ACK_WRITE_FINISHED">
+		</entry>
+	</enum>
+  </enums>
+  <messages>
+	<message id="0" name="IMU_RAW">
+	  <field type="int16_t" name="acc_x_raw" ></field>
+	  <field type="int16_t" name="acc_y_raw" ></field>
+	  <field type="int16_t" name="acc_z_raw" ></field>
+	  <field type="int16_t" name="temp_raw" ></field>
+	  <field type="int16_t" name="gyro_x_raw" ></field>
+	  <field type="int16_t" name="gyro_y_raw" ></field>
+	  <field type="int16_t" name="gyro_z_raw" ></field>
+	  <field type="int16_t" name="mag_x_raw" ></field>
+	  <field type="int16_t" name="mag_y_raw" ></field>
+	  <field type="int16_t" name="mag_z_raw" ></field>
+    </message>
+    <message id="1" name="IMU">
+      <field type="float" name="acc_x" units="m/s/s"></field>
+      <field type="float" name="acc_y" units="m/s/s"></field>
+      <field type="float" name="acc_z" units="m/s/s"></field>
+      <field type="float" name="temp_C" uints="degC"></field>
+      <field type="float" name="gyro_x" units="rad/s"></field>
+      <field type="float" name="gyro_y" units="rad/s"></field>
+      <field type="float" name="gyro_z" units="rad/s"></field>
+      <field type="float" name="mag_x" units="gauss"></field>
+      <field type="float" name="mag_y" units="gauss"></field>
+      <field type="float" name="mag_z" units="gauss"></field>
+    </message>
+    <message id="2" name="PRESSURE">
+      <field type="float" name="abs_pressure" units="hPa">绝对压强</field>
+      <field type="float" name="temperature" units="hPa">温度</field>
+      <field type="float" name="ground_pressure" units="hPa">地面压强</field>
+      <field type="float" name="pressure_alt" units="m">高度</field>
+    </message>
+    <message id="3" name="SONAR">
+      <field type="float" name="distance" units="m">测量距离</field>
+      <field type="float" name="distance_alt" units="m">高度</field>
+    </message>
+    <message id="4" name="ATTITUDE">
+      <field type="float" name="roll" units="rad"></field>
+      <field type="float" name="pitch" units="rad"></field>
+      <field type="float" name="yaw" units="rad"></field>
+      <field type="float" name="roll_speed" units="rad/s"></field>
+      <field type="float" name="pitch_speed" units="rad/s"></field>
+      <field type="float" name="yaw_speed" units="rad/s"></field>
+    </message>
+    <message id="5" name="POSITION">
+	  <field type="float" name="x" units="m"></field>
+	  <field type="float" name="y" units="m"></field>
+	  <field type="float" name="z" units="m"></field>
+	  <field type="float" name="x_speed" units="m/s"></field>
+	  <field type="float" name="y_speed" units="m/s"></field>
+	  <field type="float" name="z_speed" units="m/s"></field>
+    </message>
+    <message id="6" name="ROCKER">
+	  <field type="int16_t" name="leftX"></field>
+	  <field type="int16_t" name="leftY"></field>
+	  <field type="int16_t" name="rightX"></field>
+	  <field type="int16_t" name="rightY"></field>
+	  <field type="int16_t" name="switchA"></field>
+	  <field type="int16_t" name="switchB"></field>
+	  <field type="int16_t" name="switchC"></field>
+	  <field type="int16_t" name="switchD"></field>
+	  <field type="int16_t" name="switchE"></field>
+	  <field type="int16_t" name="switchF"></field>
+	  <field type="int16_t" name="switchG"></field>
+    </message>
+    <message id="7" name="PARAM_READ_REQUEST">
+		<field type="uint8_t" name="SYS_TYPE"></field>
+		<field type="uint8_t" name="DEV_ID"></field>
+    	<field type="uint8_t" name="param_id" enum="PARAM_TYPE">参数类型，详见参数定义</field>
+    </message>
+    <message id="8" name="PARAM_READ_ACK">
+	  <field type="uint8_t" name="param_id" enum="PARAM_TYPE">参数类型，详见参数定义</field>
+	  <field type="float" name="value"></field>
+    </message>   
+    <message id="9" name="PARAM_WRITE">
+		<field type="uint8_t" name="param_id" enum="PARAM_TYPE">参数类型，详见参数定义</field>
+		<field type="float" name="value"></field>
+    </message>
+    <message id="10" name="PARAM_WRITE_ACK">
+	  <field type="uint8_t" name="param_id" enum="PARAM_TYPE">参数类型，详见参数定义</field>
+    </message>   
+    <message id="11" name="CMD_WRITE">
+		<field type="uint8_t" name="SYS_TYPE"></field>
+		<field type="uint8_t" name="DEV_ID"></field>
+		<field type="uint8_t" name="cmd_id" enum="CMD_TYPE">命令类型，详见命令定义</field>
+    </message>
+    <message id="12" name="CMD_ACK">
+	  <field type="uint8_t" name="cmd_id" enum="CMD_TYPE">命令类型，详见命令定义</field>
+	  <field type="uint8_t" name="cmd_ack_id" enum="CMD_ACK_FALG">命令应答标志，详见命令应答标志定义</field>
+    </message>
+    <message id="13" name="BATTERY_VOLTAGE">
+	  <field type="float" name="voltage"></field>
+    </message>
+    <message id="14" name="USV_STATE">
+		<field type="float" name="x"></field>
+		<field type="float" name="y"></field>
+		<field type="float" name="speed"></field>
+		<field type="float" name="course"></field>
+		<field type="float" name="heading"></field>
+    </message>
+	<message id="15" name="USV_SET">
+		<field type="uint8_t" name="SYS_TYPE"></field>
+		<field type="uint8_t" name="DEV_ID"></field>
+		<field type="int16_t" name="MotorSet"></field>
+		<field type="int16_t" name="RudderSet"></field>
+    </message>
+	<message id="16" name="UAV_SET">
+		<field type="uint8_t" name="SYS_TYPE"></field>
+		<field type="uint8_t" name="DEV_ID"></field>
+		<field type="float" name="X_Speed"></field>
+		<field type="float" name="Y_Speed"></field>
+		<field type="float" name="Z_Speed"></field>
+    </message>
+  </messages>
+</mavlink>
