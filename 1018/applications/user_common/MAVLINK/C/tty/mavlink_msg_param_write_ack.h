@@ -1,7 +1,7 @@
 #pragma once
 // MESSAGE PARAM_WRITE_ACK PACKING
 
-#define MAVLINK_MSG_ID_PARAM_WRITE_ACK 10
+#define MAVLINK_MSG_ID_PARAM_WRITE_ACK 4
 
 
 typedef struct __mavlink_param_write_ack_t {
@@ -10,17 +10,17 @@ typedef struct __mavlink_param_write_ack_t {
 
 #define MAVLINK_MSG_ID_PARAM_WRITE_ACK_LEN 1
 #define MAVLINK_MSG_ID_PARAM_WRITE_ACK_MIN_LEN 1
-#define MAVLINK_MSG_ID_10_LEN 1
-#define MAVLINK_MSG_ID_10_MIN_LEN 1
+#define MAVLINK_MSG_ID_4_LEN 1
+#define MAVLINK_MSG_ID_4_MIN_LEN 1
 
 #define MAVLINK_MSG_ID_PARAM_WRITE_ACK_CRC 54
-#define MAVLINK_MSG_ID_10_CRC 54
+#define MAVLINK_MSG_ID_4_CRC 54
 
 
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_PARAM_WRITE_ACK { \
-    10, \
+    4, \
     "PARAM_WRITE_ACK", \
     1, \
     {  { "param_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 0, offsetof(mavlink_param_write_ack_t, param_id) }, \

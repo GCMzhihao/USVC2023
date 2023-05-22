@@ -30,7 +30,7 @@ typedef struct
 }_buzzer;
 
 
-void BuzzerRun(void);
+void BuzzerRun(float dt);
 void BuzzerChangeState(_buzzer_state state);
 _buzzer_state GetBuzzerState(void);
 #endif /* APPLICATIONS_USER_DRIVERS_BUZZER_H_ */

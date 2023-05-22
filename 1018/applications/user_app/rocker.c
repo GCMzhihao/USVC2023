@@ -40,42 +40,14 @@ static void SensorCalibration(void)
         return;
     if(USV_State.Unlock)//检测到是解锁状态
         return ;
-    if(!USV_State.SysOffsetOk)//检查到有正在校准的状态
-        return ;
-    if(rocker.leftY==1000&&rocker.leftX==1000&&rocker.rightY==2000&&rocker.rightX==1000)//加速度计校准。左摇杆打到左下，右摇杆打到左上
-    {
-        USV_State.HorizOffsetOk=0;
-        USV_State.SysOffsetOk=0;
-    }
-    else if(rocker.leftY==1000&&rocker.leftX==1000&&rocker.rightY==2000&&rocker.rightX==2000)//陀螺仪校准。左摇杆打到左下，右摇杆打到右上
-    {
-        USV_State.GyroOffsetOk=0;
-        USV_State.SysOffsetOk=0;
-    }
-    else if(rocker.leftY==1000&&rocker.leftX==2000&&rocker.rightY==2000&&rocker.rightX==1000)//磁力计校准。左摇杆打到右下，右摇杆打到左上
-    {
-        USV_State.MagOffsetOk=0;
-        USV_State.SysOffsetOk=0;
-    }
-    else if(rocker.leftY==1000&&rocker.leftX==2000&&rocker.rightY==2000&&rocker.rightX==2000)//气压计校准。左摇杆打到右下，右摇杆打到右上
-    {
-        USV_State.AccOffsetOk=0;
-        USV_State.SysOffsetOk=0;
-    }
-    else if(rocker.leftY==1000&&rocker.leftX==1000&&rocker.rightY==1000&&rocker.rightX==1000)//UWB偏航角校准。左摇杆打到左下，右摇杆打到左下
-    {
-        USV_State.YawOffsetOk=0;
-        USV_State.SysOffsetOk=0;
-    }
-    else if(rocker.leftY==2000&&&&rocker.leftX==1000&&rocker.rightY==2000&&rocker.rightX==1000)//左舵机中位校准，左摇杆左上，右摇杆左上
+
+    if(rocker.leftY==2000&&rocker.leftX==1000&&rocker.rightY==2000&&rocker.rightX==1000)//左舵机中位校准，左摇杆左上，右摇杆左上
     {
         USV_State.LeftRudderOk=0;
-        USV_State.SysOffsetOk=0;
     }
-    else if(rocker.leftY==2000&&&&rocker.leftX==2000&&rocker.rightY==2000&&rocker.rightX==2000)//左舵机中位校准，左摇杆左上，右摇杆左上
+    else if(rocker.leftY==2000&&rocker.leftX==2000&&rocker.rightY==2000&&rocker.rightX==2000)//左舵机中位校准，左摇杆左上，右摇杆左上
     {
         USV_State.RightRudderOk=0;
-        USV_State.SysOffsetOk=0;
     }
 }
 

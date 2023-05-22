@@ -1,7 +1,7 @@
 #pragma once
 // MESSAGE ROCKER PACKING
 
-#define MAVLINK_MSG_ID_ROCKER 6
+#define MAVLINK_MSG_ID_ROCKER 0
 
 
 typedef struct __mavlink_rocker_t {
@@ -20,17 +20,17 @@ typedef struct __mavlink_rocker_t {
 
 #define MAVLINK_MSG_ID_ROCKER_LEN 22
 #define MAVLINK_MSG_ID_ROCKER_MIN_LEN 22
-#define MAVLINK_MSG_ID_6_LEN 22
-#define MAVLINK_MSG_ID_6_MIN_LEN 22
+#define MAVLINK_MSG_ID_0_LEN 22
+#define MAVLINK_MSG_ID_0_MIN_LEN 22
 
 #define MAVLINK_MSG_ID_ROCKER_CRC 253
-#define MAVLINK_MSG_ID_6_CRC 253
+#define MAVLINK_MSG_ID_0_CRC 253
 
 
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_ROCKER { \
-    6, \
+    0, \
     "ROCKER", \
     11, \
     {  { "leftX", NULL, MAVLINK_TYPE_INT16_T, 0, 0, offsetof(mavlink_rocker_t, leftX) }, \

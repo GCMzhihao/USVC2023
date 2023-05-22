@@ -1,7 +1,7 @@
 #pragma once
 // MESSAGE PARAM_READ_REQUEST PACKING
 
-#define MAVLINK_MSG_ID_PARAM_READ_REQUEST 7
+#define MAVLINK_MSG_ID_PARAM_READ_REQUEST 1
 
 
 typedef struct __mavlink_param_read_request_t {
@@ -12,17 +12,17 @@ typedef struct __mavlink_param_read_request_t {
 
 #define MAVLINK_MSG_ID_PARAM_READ_REQUEST_LEN 3
 #define MAVLINK_MSG_ID_PARAM_READ_REQUEST_MIN_LEN 3
-#define MAVLINK_MSG_ID_7_LEN 3
-#define MAVLINK_MSG_ID_7_MIN_LEN 3
+#define MAVLINK_MSG_ID_1_LEN 3
+#define MAVLINK_MSG_ID_1_MIN_LEN 3
 
 #define MAVLINK_MSG_ID_PARAM_READ_REQUEST_CRC 97
-#define MAVLINK_MSG_ID_7_CRC 97
+#define MAVLINK_MSG_ID_1_CRC 97
 
 
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_PARAM_READ_REQUEST { \
-    7, \
+    1, \
     "PARAM_READ_REQUEST", \
     3, \
     {  { "SYS_TYPE", NULL, MAVLINK_TYPE_UINT8_T, 0, 0, offsetof(mavlink_param_read_request_t, SYS_TYPE) }, \

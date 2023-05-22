@@ -1,7 +1,7 @@
 #pragma once
 // MESSAGE PARAM_WRITE PACKING
 
-#define MAVLINK_MSG_ID_PARAM_WRITE 9
+#define MAVLINK_MSG_ID_PARAM_WRITE 3
 
 
 typedef struct __mavlink_param_write_t {
@@ -11,17 +11,17 @@ typedef struct __mavlink_param_write_t {
 
 #define MAVLINK_MSG_ID_PARAM_WRITE_LEN 5
 #define MAVLINK_MSG_ID_PARAM_WRITE_MIN_LEN 5
-#define MAVLINK_MSG_ID_9_LEN 5
-#define MAVLINK_MSG_ID_9_MIN_LEN 5
+#define MAVLINK_MSG_ID_3_LEN 5
+#define MAVLINK_MSG_ID_3_MIN_LEN 5
 
 #define MAVLINK_MSG_ID_PARAM_WRITE_CRC 11
-#define MAVLINK_MSG_ID_9_CRC 11
+#define MAVLINK_MSG_ID_3_CRC 11
 
 
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_PARAM_WRITE { \
-    9, \
+    3, \
     "PARAM_WRITE", \
     2, \
     {  { "param_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_param_write_t, param_id) }, \

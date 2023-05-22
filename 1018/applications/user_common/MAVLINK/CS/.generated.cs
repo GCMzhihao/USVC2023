@@ -66,67 +66,13 @@ using System.Reflection;
 	public enum PARAM_TYPE : uint
 	{
 		PARAM_LIST_REQUEST = 0,
-		PARAM_ROLL_INNER_P = 1,
-		PARAM_ROLL_INNER_I = 2,
-		PARAM_ROLL_INNER_D = 3,
-		PARAM_ROLL_OUTER_P = 4,
-		PARAM_ROLL_OUTER_I = 5,
-		PARAM_ROLL_OUTER_D = 6,
-		PARAM_PITCH_INNER_P = 7,
-		PARAM_PITCH_INNER_I = 8,
-		PARAM_PITCH_INNER_D = 9,
-		PARAM_PITCH_OUTER_P = 10,
-		PARAM_PITCH_OUTER_I = 11,
-		PARAM_PITCH_OUTER_D = 12,
-		PARAM_YAW_INNER_P = 13,
-		PARAM_YAW_INNER_I = 14,
-		PARAM_YAW_INNER_D = 15,
-		PARAM_YAW_OUTER_P = 16,
-		PARAM_YAW_OUTER_I = 17,
-		PARAM_YAW_OUTER_D = 18,
-		PARAM_ACC_OFFSET_X = 19,
-		PARAM_ACC_OFFSET_Y = 20,
-		PARAM_ACC_OFFSET_Z = 21,
-		PARAM_ACC_GAIN_INV_X = 22,
-		PARAM_ACC_GAIN_INV_Y = 23,
-		PARAM_ACC_GAIN_INV_Z = 24,
-		PARAM_GYRO_OFFSET_X = 25,
-		PARAM_GYRO_OFFSET_Y = 26,
-		PARAM_GYRO_OFFSET_Z = 27,
-		PARAM_MAG_OFFSET_X = 28,
-		PARAM_MAG_OFFSET_Y = 29,
-		PARAM_MAG_OFFSET_Z = 30,
-		PARAM_MAG_GAIN_INV_X = 31,
-		PARAM_MAG_GAIN_INV_Y = 32,
-		PARAM_MAG_GAIN_INV_Z = 33,
-		PARAM_HORIZ_OFFSET_X = 34,
-		PARAM_HORIZ_OFFSET_Y = 35,
-		PARAM_HORIZ_OFFSET_Z = 36,
-		PARAM_X_INNER_P = 37,
-		PARAM_X_INNER_I = 38,
-		PARAM_X_INNER_D = 39,
-		PARAM_X_OUTER_P = 40,
-		PARAM_X_OUTER_I = 41,
-		PARAM_X_OUTER_D = 42,
-		PARAM_Y_INNER_P = 43,
-		PARAM_Y_INNER_I = 44,
-		PARAM_Y_INNER_D = 45,
-		PARAM_Y_OUTER_P = 46,
-		PARAM_Y_OUTER_I = 47,
-		PARAM_Y_OUTER_D = 48,
-		PARAM_Z_INNER_P = 49,
-		PARAM_Z_INNER_I = 50,
-		PARAM_Z_INNER_D = 51,
-		PARAM_Z_OUTER_P = 52,
-		PARAM_Z_OUTER_I = 53,
-		PARAM_Z_OUTER_D = 54,
-		PARAM_USV_SPEED_P = 55,
-		PARAM_USV_SPEED_I = 56,
-		PARAM_USV_SPEED_D = 57,
-		PARAM_USV_HEADING_P = 58,
-		PARAM_USV_HEADING_I = 59,
-		PARAM_USV_HEADING_D = 60,
-		PARAM_TYPE_ENUM_END = 61,
+		PARAM_USV_SPEED_P = 1,
+		PARAM_USV_SPEED_I = 2,
+		PARAM_USV_SPEED_D = 3,
+		PARAM_USV_HEADING_P = 4,
+		PARAM_USV_HEADING_I = 5,
+		PARAM_USV_HEADING_D = 6,
+		PARAM_TYPE_ENUM_END = 7,
 
 	}
 
@@ -138,15 +84,8 @@ using System.Reflection;
 	{
 		CMD_UNLOCK = 1,
 		CMD_LOCK = 2,
-		CMD_TAKEOFF = 3,
-		CMD_LAND = 4,
-		CMD_GYRO_OFFSET = 5,
-		CMD_ACC_OFFSET = 6,
-		CMD_MAG_OFFSET = 7,
-		CMD_BARO_OFFSET = 8,
-		CMD_HORIZ_OFFSET = 9,
-		CMD_YAW_OFFSET = 10,
-		CMD_TYPE_ENUM_END = 11,
+		CMD_AUTO_DRIVE = 3,
+		CMD_TYPE_ENUM_END = 4,
 
 	}
 
@@ -175,250 +114,6 @@ namespace MavLink
     {
         public abstract int Serialize(byte[] bytes, ref int offset);
     }
-	public class Msg_imu_raw : MavlinkMessage
-    {
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public Int16 acc_x_raw;
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public Int16 acc_y_raw;
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public Int16 acc_z_raw;
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public Int16 temp_raw;
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public Int16 gyro_x_raw;
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public Int16 gyro_y_raw;
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public Int16 gyro_z_raw;
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public Int16 mag_x_raw;
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public Int16 mag_y_raw;
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public Int16 mag_z_raw;
-
-        public override int Serialize(byte[] bytes, ref int offset)
-            {
-                return MavLinkSerializer.Serialize_IMU_RAW(this, bytes, ref offset);
-            }        
-	}
-
-	public class Msg_imu : MavlinkMessage
-    {
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public float acc_x;
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public float acc_y;
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public float acc_z;
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public float temp_C;
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public float gyro_x;
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public float gyro_y;
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public float gyro_z;
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public float mag_x;
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public float mag_y;
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public float mag_z;
-
-        public override int Serialize(byte[] bytes, ref int offset)
-            {
-                return MavLinkSerializer.Serialize_IMU(this, bytes, ref offset);
-            }        
-	}
-
-	public class Msg_pressure : MavlinkMessage
-    {
-
-		/// <summary>
-		/// 绝对压强
-		/// </summary>
-		public float abs_pressure;
-
-		/// <summary>
-		/// 温度
-		/// </summary>
-		public float temperature;
-
-		/// <summary>
-		/// 地面压强
-		/// </summary>
-		public float ground_pressure;
-
-		/// <summary>
-		/// 高度
-		/// </summary>
-		public float pressure_alt;
-
-        public override int Serialize(byte[] bytes, ref int offset)
-            {
-                return MavLinkSerializer.Serialize_PRESSURE(this, bytes, ref offset);
-            }        
-	}
-
-	public class Msg_sonar : MavlinkMessage
-    {
-
-		/// <summary>
-		/// 测量距离
-		/// </summary>
-		public float distance;
-
-		/// <summary>
-		/// 高度
-		/// </summary>
-		public float distance_alt;
-
-        public override int Serialize(byte[] bytes, ref int offset)
-            {
-                return MavLinkSerializer.Serialize_SONAR(this, bytes, ref offset);
-            }        
-	}
-
-	public class Msg_attitude : MavlinkMessage
-    {
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public float roll;
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public float pitch;
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public float yaw;
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public float roll_speed;
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public float pitch_speed;
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public float yaw_speed;
-
-        public override int Serialize(byte[] bytes, ref int offset)
-            {
-                return MavLinkSerializer.Serialize_ATTITUDE(this, bytes, ref offset);
-            }        
-	}
-
-	public class Msg_position : MavlinkMessage
-    {
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public float x;
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public float y;
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public float z;
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public float x_speed;
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public float y_speed;
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public float z_speed;
-
-        public override int Serialize(byte[] bytes, ref int offset)
-            {
-                return MavLinkSerializer.Serialize_POSITION(this, bytes, ref offset);
-            }        
-	}
-
 	public class Msg_rocker : MavlinkMessage
     {
 
@@ -602,20 +297,6 @@ namespace MavLink
             }        
 	}
 
-	public class Msg_battery_voltage : MavlinkMessage
-    {
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public float voltage;
-
-        public override int Serialize(byte[] bytes, ref int offset)
-            {
-                return MavLinkSerializer.Serialize_BATTERY_VOLTAGE(this, bytes, ref offset);
-            }        
-	}
-
 	public class Msg_usv_state : MavlinkMessage
     {
 
@@ -637,12 +318,12 @@ namespace MavLink
 		/// <summary>
 		/// 
 		/// </summary>
-		public float course;
+		public float heading;
 
 		/// <summary>
 		/// 
 		/// </summary>
-		public float heading;
+		public float battery_voltage;
 
         public override int Serialize(byte[] bytes, ref int offset)
             {
@@ -666,50 +347,16 @@ namespace MavLink
 		/// <summary>
 		/// 
 		/// </summary>
-		public Int16 MotorSet;
+		public float Speed;
 
 		/// <summary>
 		/// 
 		/// </summary>
-		public Int16 RudderSet;
+		public float Heading;
 
         public override int Serialize(byte[] bytes, ref int offset)
             {
                 return MavLinkSerializer.Serialize_USV_SET(this, bytes, ref offset);
-            }        
-	}
-
-	public class Msg_uav_set : MavlinkMessage
-    {
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public byte SYS_TYPE;
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public byte DEV_ID;
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public float X_Speed;
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public float Y_Speed;
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public float Z_Speed;
-
-        public override int Serialize(byte[] bytes, ref int offset)
-            {
-                return MavLinkSerializer.Serialize_UAV_SET(this, bytes, ref offset);
             }        
 	}
 

@@ -21,13 +21,6 @@ typedef struct
 {
     uint8_t SysInitOk:1;
     uint8_t Unlock:1;
-    uint8_t SysOffsetOk:1;//系统校准状态
-    uint8_t AccOffsetOk:1; //加速计六面校准标志
-    uint8_t GyroOffsetOk:1;//陀螺仪校准标志
-    uint8_t MagOffsetOk:1; //磁力计校准标志
-    uint8_t HorizOffsetOk:1; //水平校准标志
-    uint8_t YawOffsetOk:1;//偏航角校准标志
-    uint8_t BaroOffsetOk:1;//气压计校准标志
     uint8_t LowPower:1;//低电量
     uint8_t RockerIsReady:1;//摇杆接收到数据
     uint8_t AutoSail:1;//自动航行标志
@@ -43,8 +36,8 @@ typedef struct
 }_USV_State;
 typedef struct
 {
-    float MotorSet;
-    float RudderSet;
+    float Speed;
+    float Heading;
 }_USV_SET;
 extern PID USV_Speed_PID;
 extern PID USV_Heading_PID;

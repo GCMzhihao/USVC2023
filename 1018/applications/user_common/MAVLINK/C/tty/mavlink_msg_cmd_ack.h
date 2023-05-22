@@ -1,7 +1,7 @@
 #pragma once
 // MESSAGE CMD_ACK PACKING
 
-#define MAVLINK_MSG_ID_CMD_ACK 12
+#define MAVLINK_MSG_ID_CMD_ACK 6
 
 
 typedef struct __mavlink_cmd_ack_t {
@@ -11,17 +11,17 @@ typedef struct __mavlink_cmd_ack_t {
 
 #define MAVLINK_MSG_ID_CMD_ACK_LEN 2
 #define MAVLINK_MSG_ID_CMD_ACK_MIN_LEN 2
-#define MAVLINK_MSG_ID_12_LEN 2
-#define MAVLINK_MSG_ID_12_MIN_LEN 2
+#define MAVLINK_MSG_ID_6_LEN 2
+#define MAVLINK_MSG_ID_6_MIN_LEN 2
 
 #define MAVLINK_MSG_ID_CMD_ACK_CRC 251
-#define MAVLINK_MSG_ID_12_CRC 251
+#define MAVLINK_MSG_ID_6_CRC 251
 
 
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_CMD_ACK { \
-    12, \
+    6, \
     "CMD_ACK", \
     2, \
     {  { "cmd_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 0, offsetof(mavlink_cmd_ack_t, cmd_id) }, \

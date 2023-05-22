@@ -24,11 +24,7 @@
 #include <Filter.h>
 #include <./MAVLINK/C/tty/mavlink.h>
 #include <math_matrix.h>
-#include <nlink_linktrack_tagframe0.h>
-#include <nlink_utils.h>
-
-#include <icm20602.h>
-#include <ak8975.h>
+#include <gps.h>
 #include <w25qxx.h>
 #include <pin.h>
 #include <ws2812.h>
@@ -40,16 +36,12 @@
 #include <uart.h>
 #include <parameter.h>
 #include <nvic.h>
-#include <sensor.h>
 #include <sem.h>
 #include <task.h>
 #include <timer.h>
 #include <init.h>
 
-#include <ahrs.h>
 #include <rocker.h>
-#include <attitude.h>
-#include <position.h>
 #include <control.h>
 #include <motor_control.h>
 #include <mavlink_proxy.h>

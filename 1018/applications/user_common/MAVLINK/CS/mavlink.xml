@@ -54,196 +54,6 @@
             
             </summary>
         </member>
-        <member name="F:MavLink.Msg_imu_raw.acc_x_raw">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:MavLink.Msg_imu_raw.acc_y_raw">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:MavLink.Msg_imu_raw.acc_z_raw">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:MavLink.Msg_imu_raw.temp_raw">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:MavLink.Msg_imu_raw.gyro_x_raw">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:MavLink.Msg_imu_raw.gyro_y_raw">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:MavLink.Msg_imu_raw.gyro_z_raw">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:MavLink.Msg_imu_raw.mag_x_raw">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:MavLink.Msg_imu_raw.mag_y_raw">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:MavLink.Msg_imu_raw.mag_z_raw">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:MavLink.Msg_imu.acc_x">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:MavLink.Msg_imu.acc_y">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:MavLink.Msg_imu.acc_z">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:MavLink.Msg_imu.temp_C">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:MavLink.Msg_imu.gyro_x">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:MavLink.Msg_imu.gyro_y">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:MavLink.Msg_imu.gyro_z">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:MavLink.Msg_imu.mag_x">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:MavLink.Msg_imu.mag_y">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:MavLink.Msg_imu.mag_z">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:MavLink.Msg_pressure.abs_pressure">
-            <summary>
-            绝对压强
-            </summary>
-        </member>
-        <member name="F:MavLink.Msg_pressure.temperature">
-            <summary>
-            温度
-            </summary>
-        </member>
-        <member name="F:MavLink.Msg_pressure.ground_pressure">
-            <summary>
-            地面压强
-            </summary>
-        </member>
-        <member name="F:MavLink.Msg_pressure.pressure_alt">
-            <summary>
-            高度
-            </summary>
-        </member>
-        <member name="F:MavLink.Msg_sonar.distance">
-            <summary>
-            测量距离
-            </summary>
-        </member>
-        <member name="F:MavLink.Msg_sonar.distance_alt">
-            <summary>
-            高度
-            </summary>
-        </member>
-        <member name="F:MavLink.Msg_attitude.roll">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:MavLink.Msg_attitude.pitch">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:MavLink.Msg_attitude.yaw">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:MavLink.Msg_attitude.roll_speed">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:MavLink.Msg_attitude.pitch_speed">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:MavLink.Msg_attitude.yaw_speed">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:MavLink.Msg_position.x">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:MavLink.Msg_position.y">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:MavLink.Msg_position.z">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:MavLink.Msg_position.x_speed">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:MavLink.Msg_position.y_speed">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:MavLink.Msg_position.z_speed">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="F:MavLink.Msg_rocker.leftX">
             <summary>
             
@@ -364,11 +174,6 @@
             命令应答标志，详见命令应答标志定义
             </summary>
         </member>
-        <member name="F:MavLink.Msg_battery_voltage.voltage">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="F:MavLink.Msg_usv_state.x">
             <summary>
             
@@ -384,12 +189,12 @@
             
             </summary>
         </member>
-        <member name="F:MavLink.Msg_usv_state.course">
+        <member name="F:MavLink.Msg_usv_state.heading">
             <summary>
             
             </summary>
         </member>
-        <member name="F:MavLink.Msg_usv_state.heading">
+        <member name="F:MavLink.Msg_usv_state.battery_voltage">
             <summary>
             
             </summary>
@@ -404,37 +209,12 @@
             
             </summary>
         </member>
-        <member name="F:MavLink.Msg_usv_set.MotorSet">
+        <member name="F:MavLink.Msg_usv_set.Speed">
             <summary>
             
             </summary>
         </member>
-        <member name="F:MavLink.Msg_usv_set.RudderSet">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:MavLink.Msg_uav_set.SYS_TYPE">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:MavLink.Msg_uav_set.DEV_ID">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:MavLink.Msg_uav_set.X_Speed">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:MavLink.Msg_uav_set.Y_Speed">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:MavLink.Msg_uav_set.Z_Speed">
+        <member name="F:MavLink.Msg_usv_set.Heading">
             <summary>
             
             </summary>

@@ -1,7 +1,7 @@
 #pragma once
 // MESSAGE CMD_WRITE PACKING
 
-#define MAVLINK_MSG_ID_CMD_WRITE 11
+#define MAVLINK_MSG_ID_CMD_WRITE 5
 
 
 typedef struct __mavlink_cmd_write_t {
@@ -12,17 +12,17 @@ typedef struct __mavlink_cmd_write_t {
 
 #define MAVLINK_MSG_ID_CMD_WRITE_LEN 3
 #define MAVLINK_MSG_ID_CMD_WRITE_MIN_LEN 3
-#define MAVLINK_MSG_ID_11_LEN 3
-#define MAVLINK_MSG_ID_11_MIN_LEN 3
+#define MAVLINK_MSG_ID_5_LEN 3
+#define MAVLINK_MSG_ID_5_MIN_LEN 3
 
 #define MAVLINK_MSG_ID_CMD_WRITE_CRC 220
-#define MAVLINK_MSG_ID_11_CRC 220
+#define MAVLINK_MSG_ID_5_CRC 220
 
 
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_CMD_WRITE { \
-    11, \
+    5, \
     "CMD_WRITE", \
     3, \
     {  { "SYS_TYPE", NULL, MAVLINK_TYPE_UINT8_T, 0, 0, offsetof(mavlink_cmd_write_t, SYS_TYPE) }, \

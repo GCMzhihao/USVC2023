@@ -26,8 +26,6 @@ void task_2ms_entry(void* parameter)
     while(1)
     {
         rt_sem_take(sem_2ms, RT_WAITING_FOREVER);
-        GetAccGyroData(dt);
-        QuaternionUpdate(dt);
     }
 
 }
@@ -47,9 +45,6 @@ void task_10ms_entry(void* parameter)
     while(1)
     {
         rt_sem_take(sem_10ms, RT_WAITING_FOREVER);
-        GetMagData(dt);
-        AHRSupdate(dt);
-        SensorCorrection(dt);
     }
 }
 
@@ -59,7 +54,6 @@ void task_20ms_entry(void* parameter)
     while(1)
     {
         rt_sem_take(sem_20ms, RT_WAITING_FOREVER);
-        PositionUpdate(dt);
         RockerHandle();
         voltage_measure();
 
@@ -83,7 +77,7 @@ void task_100ms_entry(void* parameter)
     while(1)
     {
         rt_sem_take(sem_100ms, RT_WAITING_FOREVER);
-        BuzzerRun();
+        BuzzerRun(dt);
         MotorControl(dt);
 
     }
@@ -137,7 +131,6 @@ void task_uart2_entry(void* parameter)//UWB
             /* 阻塞等待接收信号量，等到信号量后再次读取数据 */
             rt_sem_take(sem_uart2_rx, RT_WAITING_FOREVER);
         }
-        tagframe0_phrase(ch);
     }
 }
 

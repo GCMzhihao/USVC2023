@@ -13,8 +13,7 @@ void MotorControl(float dt)
 {
     if(USV_State.Unlock==0)//未解锁
     {
-        USV_SET.MotorSet=1000;
-        USV_SET.RudderSet=1500;
+
         if(sys_id==SYS_USV&&dev_id>0)//白船
             MotorPWMSet(1000, 1500, 1400);
         else if(sys_id==SYS_USV&&dev_id==0)//黄色双体船

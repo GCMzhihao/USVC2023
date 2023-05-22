@@ -1,7 +1,7 @@
 #pragma once
 // MESSAGE PARAM_READ_ACK PACKING
 
-#define MAVLINK_MSG_ID_PARAM_READ_ACK 8
+#define MAVLINK_MSG_ID_PARAM_READ_ACK 2
 
 
 typedef struct __mavlink_param_read_ack_t {
@@ -11,17 +11,17 @@ typedef struct __mavlink_param_read_ack_t {
 
 #define MAVLINK_MSG_ID_PARAM_READ_ACK_LEN 5
 #define MAVLINK_MSG_ID_PARAM_READ_ACK_MIN_LEN 5
-#define MAVLINK_MSG_ID_8_LEN 5
-#define MAVLINK_MSG_ID_8_MIN_LEN 5
+#define MAVLINK_MSG_ID_2_LEN 5
+#define MAVLINK_MSG_ID_2_MIN_LEN 5
 
 #define MAVLINK_MSG_ID_PARAM_READ_ACK_CRC 14
-#define MAVLINK_MSG_ID_8_CRC 14
+#define MAVLINK_MSG_ID_2_CRC 14
 
 
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_PARAM_READ_ACK { \
-    8, \
+    2, \
     "PARAM_READ_ACK", \
     2, \
     {  { "param_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_param_read_ack_t, param_id) }, \

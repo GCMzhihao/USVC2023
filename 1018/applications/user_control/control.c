@@ -20,13 +20,6 @@ void USV_PID_Init(void)
 }
 int USV_State_Init(void)
 {
-    USV_State.SysOffsetOk=1;
-    USV_State.HorizOffsetOk=1;
-    USV_State.GyroOffsetOk=1;
-    USV_State.MagOffsetOk=1;
-    USV_State.AccOffsetOk=1;
-    USV_State.BaroOffsetOk=1;
-    USV_State.YawOffsetOk=1;
     USV_State.AutoSail=0;
     USV_State.LeftRudderOk=1;
     USV_State.RightRudderOk=1;
@@ -103,16 +96,9 @@ void CommandControl(float dt)
         return;
     if(sys_id==SYS_USV&&dev_id>0)//小白船，编队
     {
-        pwm1=LIMIT(USV_SET.MotorSet,1000,2000);
-        pwm2=LIMIT(USV_SET.RudderSet,1000,2000);
-        pwm3=1600;
+
     }
-    else if(sys_id==SYS_USV&&dev_id==0)//黄色双体船，自主
-    {
-        pwm1 = YellowShipPWMConvert_LeftMotor(LIMIT(USV_SET.MotorSet,1000,2000));
-        pwm2 = YellowShipPWMConvert_RightMotor(LIMIT(USV_SET.MotorSet,1000,2000));
-        pwm3 = YellowShipSteerPWMConvert(LIMIT(USV_SET.RudderSet,1000,2000));
-    }
+
     MotorPWMSet(pwm1, pwm2, pwm3);
 }
 
