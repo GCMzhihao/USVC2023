@@ -174,12 +174,12 @@
             命令应答标志，详见命令应答标志定义
             </summary>
         </member>
-        <member name="F:MavLink.Msg_usv_state.x">
+        <member name="F:MavLink.Msg_usv_state.longitude">
             <summary>
             
             </summary>
         </member>
-        <member name="F:MavLink.Msg_usv_state.y">
+        <member name="F:MavLink.Msg_usv_state.latitude">
             <summary>
             
             </summary>

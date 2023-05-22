@@ -252,11 +252,47 @@ void GPFPD_Analysis(uint8_t *buf)
     GPS.GPFPD.Ant2Num=atoi(GetNMEA_Pos(buf,14));
     GPS.GPFPD.SolState=atoi(GetNMEA_Pos(buf,15));
 }
+void GPTRA_Analysis(uint8_t *buf)
+{
+    uint8_t strcnt=NullCharReplaceComma(buf);
+        if(strcnt==0)////校验失败
+            return;
+        GPS.GPTRA.utc.Time=atof(GetNMEA_Pos(buf,1))*1000;
+        GPS.GPTRA.heading=atof(GetNMEA_Pos(buf, 2));
+        GPS.GPTRA.pitch=atof(GetNMEA_Pos(buf, 3));
+        GPS.GPTRA.roll=atof(GetNMEA_Pos(buf, 4));
+        GPS.GPTRA.QF=atoi(GetNMEA_Pos(buf, 5));
+        GPS.GPTRA.SatNum=atoi(GetNMEA_Pos(buf, 6));
+        GPS.GPTRA.DiffDelay=atof(GetNMEA_Pos(buf, 7));
+        GPS.GPTRA.StnID=atoi(GetNMEA_Pos(buf, 8));
+
+
+}
+void Heading_Analysis(uint8_t *buf)
+{
+    uint8_t strcnt=NullCharReplaceComma(buf);
+        if(strcnt==0)////校验失败
+            return;
+        GPS.Headinga.Length=atof(GetNMEA_Pos(buf, 3));
+        GPS.Headinga.heading=atof(GetNMEA_Pos(buf, 4));
+        GPS.Headinga.pitch=atof(GetNMEA_Pos(buf, 5));
+        GPS.Headinga.hdgstddev=atof(GetNMEA_Pos(buf, 6));
+        GPS.Headinga.ptchstddev=atof(GetNMEA_Pos(buf, 7));
+        GPS.Headinga.StnID=atoi(GetNMEA_Pos(buf, 8));
+
+}
 void NMEA0183_Analysis(uint8_t *buf)
 {
     if(strstr((char*)buf,"$GPRMC")!=NULL)
         GPRMC_Analysis(buf);
     else if(strstr((char*)buf,"$GPFPD")!=NULL)
         GPFPD_Analysis(buf);
+    else if(strstr((char*)buf,"$GPTRA")!=NULL)
+        GPTRA_Analysis(buf);
+    else if(strstr((char*)buf,"$GPGGA")!=NULL)
+        GPGGA_Analysis(buf);
+    else if(strstr((char*)buf,"#HEADINGA")!=NULL)
+        Heading_Analysis(buf);
+
 }
 

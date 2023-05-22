@@ -82,11 +82,64 @@ typedef struct
 
 typedef struct
 {
+    _UTC utc;
+    float heading;//航向角 0~360°
+    float pitch;//俯仰角 -90~90°
+    float roll;//横滚角 -90~90°
+    uint8_t QF;//解状态 0：无效解；1：单点定位解；2：伪距差分；4：固定解；5：浮动解；
+    uint8_t SatNum;//卫星数
+    float DiffDelay;//差分延迟
+    uint16_t StnID;//基站号
+
+}_GPTRA;
+
+typedef struct
+{
+    float Length;//基线长度 m
+    float heading;//方位角 0~360°
+    float pitch;//俯仰角-90~90°
+    float hdgstddev;//方位角标准差 °
+    float ptchstddev;//俯仰角标准差 °
+    uint16_t StnID;//基准值ID
+    uint8_t SVs;//跟踪到的卫星数
+
+}_Headinga;
+
+typedef struct
+{
+    _UTC utc;
+    double Longitude;//经度
+    double Latitude;//纬度
+    float Altitude;//海拔高度 m
+    float heading;//方位角 0~360°
+    float pitch;//俯仰角 -90~90°
+    float TrackTure;//0~360°
+    float Roll;//橫滾角 0~360°
+    uint8_t PosQual;//GNSS 定位质量指示符0： 定位不可用或无效；1： 单点定位；2： RTK 浮点解；3： RTK 固定解
+    uint8_t HeadingQual;//HEADING 测向质量指示符0： 定位不可用或无效；1： 单点定位；2： RTK 浮点解；3： RTK 固定解
+    uint8_t SsolnSvs;//从天线当前参与解算的卫星数量
+    uint8_t MsolnSvs;//主天线当前参与解算的卫星数量
+    float PosEast;//东向位置坐标
+    float PosNorth;//北向位置坐标
+    float PosUp;//天向位置坐标
+    float VelEast;//东向速度
+    float VelNorth;//北向速度
+    float VelUp;//天向速度
+    float MSNR;//主天线当前的载噪比分值
+    float SSNR;//从天线当前的载噪比分值
+
+}_KSXT;
+
+typedef struct
+{
     _GPGSV GPGSV;
     _GPGGA GPGGA;
     _GPRMC GPRMC;
     _GPVTG GPVTG;
     _GPFPD GPFPD;
+    _GPTRA GPTRA;
+    _Headinga Headinga;
+    _KSXT KSXT;
 }_NMEA_MSG;
 extern _NMEA_MSG GPS;
 void NMEA0183_Analysis(uint8_t *buf);

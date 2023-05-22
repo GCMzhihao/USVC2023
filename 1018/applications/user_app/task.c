@@ -131,6 +131,8 @@ void task_uart2_entry(void* parameter)//UWB
             /* 阻塞等待接收信号量，等到信号量后再次读取数据 */
             rt_sem_take(sem_uart2_rx, RT_WAITING_FOREVER);
         }
+        uart2_analysis(ch);
+
     }
 }
 

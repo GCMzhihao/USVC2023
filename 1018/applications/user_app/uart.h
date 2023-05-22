@@ -13,5 +13,6 @@
 extern rt_device_t uart1;
 extern rt_device_t uart2;
 void uart_init(void);
+void uart2_analysis(uint8_t c);
 
 #endif /* APPLICATIONS_USER_DRIVER_UART_H_ */

@@ -41,7 +41,42 @@ void uart_init(void)
     rt_device_set_rx_indicate(uart2,uart2_rx_callback);
 }
 
+void uart2_analysis(uint8_t c)
+{
+    static uint8_t rx_state=0;//接收状态机
+    static uint16_t cnt=0;
+    static uint8_t buf[200];
+    switch(rx_state)
+    {
+    case 0:
+        if(c=='$'||c=='#')
+        {
+            cnt=0;
+            rx_state=1;
+            rt_memset(buf, 0, 200);
+            buf[cnt++]=c;
+        }
+        break;
+    case 1:
+        buf[cnt++]=c;
+        if(c=='\r')
+        {
+            rx_state=2;
+        }
+        if(cnt>=200)
+            rx_state=0;
+        break;
+    case 2:
+        rx_state=0;
+        if(c=='\n')
+        {
+            buf[cnt++]=c;
+            NMEA0183_Analysis(buf);
+        }
 
+        break;
+    }
+}
 
 
 

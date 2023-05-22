@@ -303,12 +303,12 @@ namespace MavLink
 		/// <summary>
 		/// 
 		/// </summary>
-		public float x;
+		public float longitude;
 
 		/// <summary>
 		/// 
 		/// </summary>
-		public float y;
+		public float latitude;
 
 		/// <summary>
 		/// 
