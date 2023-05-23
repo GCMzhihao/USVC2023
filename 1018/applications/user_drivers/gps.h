@@ -31,6 +31,8 @@ typedef struct
 {
     uint32_t Time;
     uint32_t Date;
+    char str[20];
+
 }_UTC;
 typedef struct
 {
@@ -82,7 +84,7 @@ typedef struct
 
 typedef struct
 {
-    _UTC utc;
+    _UTC UTC;
     float heading;//航向角 0~360°
     float pitch;//俯仰角 -90~90°
     float roll;//横滚角 -90~90°
@@ -102,18 +104,24 @@ typedef struct
     float ptchstddev;//俯仰角标准差 °
     uint16_t StnID;//基准值ID
     uint8_t SVs;//跟踪到的卫星数
+    uint8_t SolnSVs;//参与RTK结算的卫星数
+    uint8_t Obs;//截止高度角以上的卫星数
+    uint8_t Multi;//截止高度角以上跟踪到 L2 的卫星数
+    uint8_t ExtSolSta;//扩展解算状态
+    uint8_t SigMask;//参与解算的信号
 
 }_Headinga;
 
 typedef struct
 {
-    _UTC utc;
+    _UTC UTC;
     double Longitude;//经度
     double Latitude;//纬度
     float Altitude;//海拔高度 m
     float heading;//方位角 0~360°
     float pitch;//俯仰角 -90~90°
     float TrackTure;//0~360°
+    float Vel;//速度
     float Roll;//橫滾角 0~360°
     uint8_t PosQual;//GNSS 定位质量指示符0： 定位不可用或无效；1： 单点定位；2： RTK 浮点解；3： RTK 固定解
     uint8_t HeadingQual;//HEADING 测向质量指示符0： 定位不可用或无效；1： 单点定位；2： RTK 浮点解；3： RTK 固定解

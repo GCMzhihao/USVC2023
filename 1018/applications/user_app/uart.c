@@ -34,8 +34,8 @@ void uart_init(void)
     rt_device_open(uart1,RT_DEVICE_FLAG_DMA_RX);
     rt_device_set_rx_indicate(uart1,uart1_rx_callback);
 
-    uart2 = rt_device_find("uart2");//UWB
-    uart2_config.baud_rate = BAUD_RATE_921600;
+    uart2 = rt_device_find("uart2");//GPS
+    uart2_config.baud_rate = BAUD_RATE_115200;
     rt_device_control(uart2, RT_DEVICE_CTRL_CONFIG, &uart2_config);
     rt_device_open(uart2,RT_DEVICE_FLAG_DMA_RX);
     rt_device_set_rx_indicate(uart2,uart2_rx_callback);

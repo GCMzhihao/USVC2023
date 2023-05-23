@@ -255,44 +255,82 @@ void GPFPD_Analysis(uint8_t *buf)
 void GPTRA_Analysis(uint8_t *buf)
 {
     uint8_t strcnt=NullCharReplaceComma(buf);
-        if(strcnt==0)////校验失败
-            return;
-        GPS.GPTRA.utc.Time=atof(GetNMEA_Pos(buf,1))*1000;
-        GPS.GPTRA.heading=atof(GetNMEA_Pos(buf, 2));
-        GPS.GPTRA.pitch=atof(GetNMEA_Pos(buf, 3));
-        GPS.GPTRA.roll=atof(GetNMEA_Pos(buf, 4));
-        GPS.GPTRA.QF=atoi(GetNMEA_Pos(buf, 5));
-        GPS.GPTRA.SatNum=atoi(GetNMEA_Pos(buf, 6));
-        GPS.GPTRA.DiffDelay=atof(GetNMEA_Pos(buf, 7));
-        GPS.GPTRA.StnID=atoi(GetNMEA_Pos(buf, 8));
+    if(strcnt==0)////校验失败
+        return;
+    GPS.GPTRA.heading=atof(GetNMEA_Pos(buf, 2));
+    GPS.GPTRA.pitch=atof(GetNMEA_Pos(buf, 3));
+    GPS.GPTRA.roll=atof(GetNMEA_Pos(buf, 4));
+    GPS.GPTRA.QF=atoi(GetNMEA_Pos(buf, 5));
+    GPS.GPTRA.SatNum=atoi(GetNMEA_Pos(buf, 6));
+    GPS.GPTRA.DiffDelay=atof(GetNMEA_Pos(buf, 7));
+    GPS.GPTRA.StnID=atoi(GetNMEA_Pos(buf, 8));
 
 
 }
 void Heading_Analysis(uint8_t *buf)
 {
     uint8_t strcnt=NullCharReplaceComma(buf);
-        if(strcnt==0)////校验失败
-            return;
-        GPS.Headinga.Length=atof(GetNMEA_Pos(buf, 3));
-        GPS.Headinga.heading=atof(GetNMEA_Pos(buf, 4));
-        GPS.Headinga.pitch=atof(GetNMEA_Pos(buf, 5));
-        GPS.Headinga.hdgstddev=atof(GetNMEA_Pos(buf, 6));
-        GPS.Headinga.ptchstddev=atof(GetNMEA_Pos(buf, 7));
-        GPS.Headinga.StnID=atoi(GetNMEA_Pos(buf, 8));
+    if(strcnt==0)////校验失败
+        return;
+    GPS.Headinga.Length=atof(GetNMEA_Pos(buf, 3));
+    GPS.Headinga.heading=atof(GetNMEA_Pos(buf, 4));
+    GPS.Headinga.pitch=atof(GetNMEA_Pos(buf, 5));
+    GPS.Headinga.hdgstddev=atof(GetNMEA_Pos(buf, 7));
+    GPS.Headinga.ptchstddev=atof(GetNMEA_Pos(buf, 8));
+    GPS.Headinga.StnID=atoi(GetNMEA_Pos(buf, 9));
+    GPS.Headinga.SVs=atoi(GetNMEA_Pos(buf, 10));
+    GPS.Headinga.SolnSVs=atoi(GetNMEA_Pos(buf, 11));
+    GPS.Headinga.Obs=atoi(GetNMEA_Pos(buf, 12));
+    GPS.Headinga.Multi=atoi(GetNMEA_Pos(buf, 13));
+    GPS.Headinga.ExtSolSta=atoi(GetNMEA_Pos(buf, 15));
+    GPS.Headinga.SigMask=atoi(GetNMEA_Pos(buf, 17));
+
+
+}
+void KSXT_Analysis(uint8_t *buf)
+{
+    uint8_t strcnt=NullCharReplaceComma(buf);
+    if(strcnt==0)////校验失败
+        return;
+    strcpy(GPS.KSXT.UTC.str,GetNMEA_Pos(buf, 1));
+    GPS.KSXT.Longitude=atof(GetNMEA_Pos(buf, 2));
+    GPS.KSXT.Latitude=atof(GetNMEA_Pos(buf, 3));
+    GPS.KSXT.Altitude=atof(GetNMEA_Pos(buf, 4));
+    GPS.KSXT.heading=atof(GetNMEA_Pos(buf, 5));
+    GPS.KSXT.pitch=atof(GetNMEA_Pos(buf, 6));
+    GPS.KSXT.TrackTure=atof(GetNMEA_Pos(buf, 7));
+    GPS.KSXT.Vel=atof(GetNMEA_Pos(buf, 8));
+    GPS.KSXT.Roll=atof(GetNMEA_Pos(buf, 9));
+    GPS.KSXT.PosQual=atoi(GetNMEA_Pos(buf, 10));
+    GPS.KSXT.HeadingQual=atoi(GetNMEA_Pos(buf, 11));
+    GPS.KSXT.SsolnSvs=atoi(GetNMEA_Pos(buf, 12));
+    GPS.KSXT.MsolnSvs=atoi(GetNMEA_Pos(buf, 13));
+    GPS.KSXT.PosEast=atof(GetNMEA_Pos(buf, 14));
+    GPS.KSXT.PosNorth=atof(GetNMEA_Pos(buf, 15));
+    GPS.KSXT.PosUp=atof(GetNMEA_Pos(buf, 16));
+    GPS.KSXT.VelEast=atof(GetNMEA_Pos(buf, 17));
+    GPS.KSXT.VelNorth=atof(GetNMEA_Pos(buf,18));
+    GPS.KSXT.VelUp=atof(GetNMEA_Pos(buf, 19));
+    GPS.KSXT.MSNR=atoi(GetNMEA_Pos(buf, 20));
+    GPS.KSXT.SSNR=atoi(GetNMEA_Pos(buf, 21));
+
+    rt_kprintf("KSXT: UTC=%s\n",GPS.KSXT.UTC.str);
 
 }
 void NMEA0183_Analysis(uint8_t *buf)
 {
-    if(strstr((char*)buf,"$GPRMC")!=NULL)
-        GPRMC_Analysis(buf);
-    else if(strstr((char*)buf,"$GPFPD")!=NULL)
-        GPFPD_Analysis(buf);
-    else if(strstr((char*)buf,"$GPTRA")!=NULL)
-        GPTRA_Analysis(buf);
-    else if(strstr((char*)buf,"$GPGGA")!=NULL)
-        GPGGA_Analysis(buf);
-    else if(strstr((char*)buf,"#HEADINGA")!=NULL)
-        Heading_Analysis(buf);
+//    if(strstr((char*)buf,"$GPRMC")!=NULL)
+//        GPRMC_Analysis(buf);
+//    else if(strstr((char*)buf,"$GPFPD")!=NULL)
+//        GPFPD_Analysis(buf);
+//    else if(strstr((char*)buf,"$GPTRA")!=NULL)
+//        GPTRA_Analysis(buf);
+//    else if(strstr((char*)buf,"$GPGGA")!=NULL)
+//        GPGGA_Analysis(buf);
+//    else if(strstr((char*)buf,"#HEADINGA")!=NULL)
+//        Heading_Analysis(buf);
+    if(strstr((char*)buf,"$KSXT")!=NULL)
+        KSXT_Analysis(buf);
 
 }
 
