@@ -12,6 +12,7 @@
 
 extern rt_device_t uart1;
 extern rt_device_t uart2;
+extern rt_device_t uart3;
 void uart_init(void);
 void uart2_analysis(uint8_t c);
 

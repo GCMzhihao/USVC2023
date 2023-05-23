@@ -23,6 +23,7 @@ rt_sem_t sem_1000ms =RT_NULL;
 rt_sem_t sem_uart1_rx =RT_NULL;
 rt_sem_t sem_uart1_tx = RT_NULL;
 rt_sem_t sem_uart2_rx =RT_NULL;
+rt_sem_t sem_uart3_rx =RT_NULL;
 void user_sem_init(void)
 {
     sem_1ms = rt_sem_create("sem_1ms", 0, RT_IPC_FLAG_FIFO);
@@ -38,6 +39,7 @@ void user_sem_init(void)
     sem_uart1_tx = rt_sem_create("sem_uart1_tx", 0, RT_IPC_FLAG_FIFO);
     rt_sem_release(sem_uart1_tx);//释放uart1发送
     sem_uart2_rx = rt_sem_create("sem_uart2_rx", 0, RT_IPC_FLAG_FIFO);
+    sem_uart3_rx = rt_sem_create("sem_uart3_rx", 0, RT_IPC_FLAG_FIFO);
 }
 
 

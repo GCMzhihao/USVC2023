@@ -17,6 +17,8 @@ int user_app_init(void)
     USV_State_Init();
     USV_PID_Init();
     uart_init();
+    /* 设置空闲线程回调函数 */
+    rt_thread_idle_sethook(SbusHandle);
     return RT_EOK;
 }
 INIT_APP_EXPORT(user_app_init);

@@ -11,5 +11,4 @@
 #define APPLICATIONS_USER_APP_ROCKER_ANALYSIS_H_
 
 void RockerHandle(void);
-
 #endif /* APPLICATIONS_USER_APP_ROCKER_ANALYSIS_H_ */

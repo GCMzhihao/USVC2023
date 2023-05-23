@@ -52,6 +52,10 @@
 #define TASK_UART2_STACK_SIZE           3000
 #define TASK_UART2_TIMESLICE            10
 
+#define TASK_UART3_PRIORITY             23
+#define TASK_UART3_STACK_SIZE           3000
+#define TASK_UART3_TIMESLICE            10
+
 rt_err_t user_task_init(void);
 
 

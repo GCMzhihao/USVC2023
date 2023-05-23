@@ -22,6 +22,7 @@ extern rt_sem_t sem_1000ms;
 extern rt_sem_t sem_uart1_rx;
 extern rt_sem_t sem_uart1_tx;
 extern rt_sem_t sem_uart2_rx;
+extern rt_sem_t sem_uart3_rx;
 void user_sem_init(void);
 
 #endif /* APPLICATIONS_USER_SEM_H_ */

@@ -19,10 +19,11 @@ static rt_thread_t task_200ms = RT_NULL;
 static rt_thread_t task_1000ms = RT_NULL;
 static rt_thread_t task_uart1 = RT_NULL;
 static rt_thread_t task_uart2 = RT_NULL;
+static rt_thread_t task_uart3 = RT_NULL;
 
 void task_2ms_entry(void* parameter)
 {
-    float dt = (uint32_t)parameter*0.001f;
+    //float dt = (uint32_t)parameter*0.001f;
     while(1)
     {
         rt_sem_take(sem_2ms, RT_WAITING_FOREVER);
@@ -41,7 +42,7 @@ void task_5ms_entry(void* parameter)
 
 void task_10ms_entry(void* parameter)
 {
-    float dt = (uint32_t)parameter*0.001f;
+  //  float dt = (uint32_t)parameter*0.001f;
     while(1)
     {
         rt_sem_take(sem_10ms, RT_WAITING_FOREVER);
@@ -50,7 +51,7 @@ void task_10ms_entry(void* parameter)
 
 void task_20ms_entry(void* parameter)
 {
-    float dt = (uint32_t)parameter*0.001f;
+  //  float dt = (uint32_t)parameter*0.001f;
     while(1)
     {
         rt_sem_take(sem_20ms, RT_WAITING_FOREVER);
@@ -133,6 +134,20 @@ void task_uart2_entry(void* parameter)//UWB
         }
         uart2_analysis(ch);
 
+    }
+}
+void task_uart3_entry(void* parameter)//Sbus
+{
+    uint8_t ch;
+    while (1)
+    {
+        /* 从串口读取一个字节的数据，没有读取到则等待接收信号量 */
+        while (rt_device_read(uart3, 0, &ch, 1) != 1)
+        {
+            /* 阻塞等待接收信号量，等到信号量后再次读取数据 */
+            rt_sem_take(sem_uart3_rx, RT_WAITING_FOREVER);
+        }
+        SbusReceive(ch);
     }
 }
 
@@ -235,6 +250,16 @@ rt_err_t user_task_init(void)
                                     TASK_UART2_TIMESLICE);
     if(task_uart2!=RT_NULL)/* 启动线程 */
         rt_thread_startup(task_uart2);
+    /* 创建线程 */
+    task_uart3 = rt_thread_create("task_uart3",
+                                    task_uart3_entry,
+                                    (void *)0,
+                                    TASK_UART3_STACK_SIZE,
+                                    TASK_UART3_PRIORITY,
+                                    TASK_UART3_TIMESLICE);
+    if(task_uart3!=RT_NULL)/* 启动线程 */
+        rt_thread_startup(task_uart3);
+
 
     return RT_EOK;
 }

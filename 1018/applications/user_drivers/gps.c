@@ -314,7 +314,6 @@ void KSXT_Analysis(uint8_t *buf)
     GPS.KSXT.MSNR=atoi(GetNMEA_Pos(buf, 20));
     GPS.KSXT.SSNR=atoi(GetNMEA_Pos(buf, 21));
 
-    rt_kprintf("KSXT: UTC=%s\n",GPS.KSXT.UTC.str);
 
 }
 void NMEA0183_Analysis(uint8_t *buf)
