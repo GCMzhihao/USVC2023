@@ -10,21 +10,26 @@
 #include<Sbus.h>
 
 uint16_t RevSbus[16];
-uint8_t RevBuf[25];
+uint8_t RevBuf[100];
 uint8_t cnt=0;
 uint8_t SbusFlag;
+uint8_t SbusRevFlag=0;
 void SbusReceive(uint8_t data)
 {
     RevBuf[cnt++]=data;
-
+    if(cnt>=25)
+   {
+       cnt=0;
+       SbusRevFlag=1;
+   }
 }
 void SbusHandle(void)
 {
-    if(cnt>=25)
+    if(SbusRevFlag==1)
     {
+        SbusRevFlag=0;
         if(RevBuf[0]==0x0f&&RevBuf[24]==0x00)
          {
-            cnt=0;
             RevSbus[0] = (uint16_t)(RevBuf[2] & 0x07) << 8 | RevBuf[1];
             RevSbus[1] = (uint16_t)(RevBuf[3] & 0x3f) << 5 | (RevBuf[2] >> 3);
             RevSbus[2] = (uint16_t)(RevBuf[5] & 0x01) << 10 | ((uint16_t)RevBuf[4] << 2) | (RevBuf[3] >> 6);
