@@ -10,14 +10,25 @@
 #include <include.h>
 
 
+void RockerFlagCheck(void)
+{
+    if(rocker.switchD>=1500)
+    {
+        USV_State.AutoSail=1;
+    }
+    else if (rocker.switchD<=500)
+    {
+        USV_State.AutoSail=0;
+    }
+
+}
+
 static void CheckLockState(void)
 {
-    USV_State.Id=rocker.switchA/500-1;
-    if(dev_id!=USV_State.Id)
-        return;
+
     if(USV_State.Unlock)//检测到是解锁状态
     {
-        if(rocker.leftY==1000&&rocker.leftX==1000&&rocker.rightY==1000&&rocker.rightX==2000)//加锁。左摇杆打到左下，右摇杆打到右下（外八字）
+        if(rocker.leftY==353&&rocker.leftX==353&&rocker.rightY==353&&rocker.rightX==1694)//加锁。左摇杆打到左下，右摇杆打到右下（外八字）
         {
             USV_State.Unlock=0;//锁定
             BuzzerChangeState(beep_lock);
@@ -25,7 +36,7 @@ static void CheckLockState(void)
     }
     else//检测到是锁定状态
     {
-        if(rocker.leftY==1000&&rocker.leftX==2000&&rocker.rightY==1000&&rocker.rightX==1000)//解锁。左摇杆打到右下，右摇杆打到左下（内八字）
+        if(rocker.rightX==353&&rocker.rightY==353&&rocker.leftY==353&&rocker.leftX==1694)//解锁。左摇杆打到右下，右摇杆打到左下（内八字）
         {
             USV_State.Unlock=1;//解锁
             BuzzerChangeState(beep_unlock);
@@ -33,27 +44,11 @@ static void CheckLockState(void)
     }
 
 }
-static void SensorCalibration(void)
-{
-    USV_State.Id=rocker.switchA/500-1;
-    if(dev_id!=USV_State.Id)
-        return;
-    if(USV_State.Unlock)//检测到是解锁状态
-        return ;
 
-    if(rocker.leftY==2000&&rocker.leftX==1000&&rocker.rightY==2000&&rocker.rightX==1000)//左舵机中位校准，左摇杆左上，右摇杆左上
-    {
-        USV_State.LeftRudderOk=0;
-    }
-    else if(rocker.leftY==2000&&rocker.leftX==2000&&rocker.rightY==2000&&rocker.rightX==2000)//左舵机中位校准，左摇杆左上，右摇杆左上
-    {
-        USV_State.RightRudderOk=0;
-    }
-}
 
 void RockerHandle(void)
 {
     CheckLockState();
-    SensorCalibration();
+
 }
 

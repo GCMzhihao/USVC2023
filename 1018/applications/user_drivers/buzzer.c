@@ -94,7 +94,7 @@ void BuzzerRun(float dt)
         else
             BuzzerOff();
         break;
-    case beep_unlock:
+    case beep_lock:
         unlock_state=0;
         if(lock_state==0)
         {
@@ -113,7 +113,7 @@ void BuzzerRun(float dt)
             lock_state=0;
         }
         break;
-    case beep_lock:
+    case beep_unlock:
         lock_state=0;
         if(unlock_state==0)
         {
