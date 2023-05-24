@@ -109,17 +109,7 @@
             
             </summary>
         </member>
-        <member name="F:MavLink.Msg_param_read_request.SYS_TYPE">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:MavLink.Msg_param_read_request.DEV_ID">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:MavLink.Msg_param_read_request.param_id">
+        <member name="F:MavLink.Msg_param_read.param_id">
             <summary>
             参数类型，详见参数定义
             </summary>

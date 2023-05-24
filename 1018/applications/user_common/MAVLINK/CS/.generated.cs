@@ -178,18 +178,8 @@ namespace MavLink
             }        
 	}
 
-	public class Msg_param_read_request : MavlinkMessage
+	public class Msg_param_read : MavlinkMessage
     {
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public byte SYS_TYPE;
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public byte DEV_ID;
 
 		/// <summary>
 		/// 参数类型，详见参数定义
@@ -198,7 +188,7 @@ namespace MavLink
 
         public override int Serialize(byte[] bytes, ref int offset)
             {
-                return MavLinkSerializer.Serialize_PARAM_READ_REQUEST(this, bytes, ref offset);
+                return MavLinkSerializer.Serialize_PARAM_READ(this, bytes, ref offset);
             }        
 	}
 

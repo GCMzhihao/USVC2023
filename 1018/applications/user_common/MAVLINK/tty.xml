@@ -69,9 +69,7 @@
 	  <field type="int16_t" name="switchF"></field>
 	  <field type="int16_t" name="switchG"></field>
     </message>
-    <message id="1" name="PARAM_READ_REQUEST">
-		<field type="uint8_t" name="SYS_TYPE"></field>
-		<field type="uint8_t" name="DEV_ID"></field>
+    <message id="1" name="PARAM_READ">
     	<field type="uint8_t" name="param_id" enum="PARAM_TYPE">参数类型，详见参数定义</field>
     </message>
     <message id="2" name="PARAM_READ_ACK">

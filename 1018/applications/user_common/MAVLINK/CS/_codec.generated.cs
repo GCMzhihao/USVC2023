@@ -50,7 +50,7 @@ namespace MavLink
         public static Dictionary<int, MavPacketInfo> Lookup = new Dictionary<int, MavPacketInfo>
         {
 			{0, new MavPacketInfo(Deserialize_ROCKER, 253)},
-			{1, new MavPacketInfo(Deserialize_PARAM_READ_REQUEST, 97)},
+			{1, new MavPacketInfo(Deserialize_PARAM_READ, 119)},
 			{2, new MavPacketInfo(Deserialize_PARAM_READ_ACK, 14)},
 			{3, new MavPacketInfo(Deserialize_PARAM_WRITE, 11)},
 			{4, new MavPacketInfo(Deserialize_PARAM_WRITE_ACK, 54)},
@@ -78,13 +78,11 @@ namespace MavLink
 			};
 		}
 
-		internal static MavlinkMessage Deserialize_PARAM_READ_REQUEST(byte[] bytes, int offset)
+		internal static MavlinkMessage Deserialize_PARAM_READ(byte[] bytes, int offset)
 		{
-			return new Msg_param_read_request
+			return new Msg_param_read
 			{
-				SYS_TYPE = bytes[offset + 0],
-				DEV_ID = bytes[offset + 1],
-				param_id = bytes[offset + 2],
+				param_id = bytes[offset + 0],
 			};
 		}
 
@@ -173,12 +171,10 @@ namespace MavLink
 			return 0;
 		}
 
-		internal static int Serialize_PARAM_READ_REQUEST(this Msg_param_read_request msg, byte[] bytes, ref int offset)
+		internal static int Serialize_PARAM_READ(this Msg_param_read msg, byte[] bytes, ref int offset)
 		{
-			bytes[offset + 0] = msg.SYS_TYPE;
-			bytes[offset + 1] = msg.DEV_ID;
-			bytes[offset + 2] = msg.param_id;
-			offset += 3;
+			bytes[offset + 0] = msg.param_id;
+			offset += 1;
 			return 1;
 		}
 

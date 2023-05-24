@@ -89,46 +89,44 @@ static void mavlink_test_rocker(uint8_t system_id, uint8_t component_id, mavlink
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
 
-static void mavlink_test_param_read_request(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
+static void mavlink_test_param_read(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
     mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
-        if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_PARAM_READ_REQUEST >= 256) {
+        if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_PARAM_READ >= 256) {
             return;
         }
 #endif
     mavlink_message_t msg;
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
-    mavlink_param_read_request_t packet_in = {
-        5,72,139
+    mavlink_param_read_t packet_in = {
+        5
     };
-    mavlink_param_read_request_t packet1, packet2;
+    mavlink_param_read_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
-        packet1.SYS_TYPE = packet_in.SYS_TYPE;
-        packet1.DEV_ID = packet_in.DEV_ID;
         packet1.param_id = packet_in.param_id;
         
         
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
         if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
            // cope with extensions
-           memset(MAVLINK_MSG_ID_PARAM_READ_REQUEST_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_PARAM_READ_REQUEST_MIN_LEN);
+           memset(MAVLINK_MSG_ID_PARAM_READ_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_PARAM_READ_MIN_LEN);
         }
 #endif
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_param_read_request_encode(system_id, component_id, &msg, &packet1);
-    mavlink_msg_param_read_request_decode(&msg, &packet2);
+    mavlink_msg_param_read_encode(system_id, component_id, &msg, &packet1);
+    mavlink_msg_param_read_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_param_read_request_pack(system_id, component_id, &msg , packet1.SYS_TYPE , packet1.DEV_ID , packet1.param_id );
-    mavlink_msg_param_read_request_decode(&msg, &packet2);
+    mavlink_msg_param_read_pack(system_id, component_id, &msg , packet1.param_id );
+    mavlink_msg_param_read_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_param_read_request_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.SYS_TYPE , packet1.DEV_ID , packet1.param_id );
-    mavlink_msg_param_read_request_decode(&msg, &packet2);
+    mavlink_msg_param_read_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.param_id );
+    mavlink_msg_param_read_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
@@ -136,12 +134,12 @@ static void mavlink_test_param_read_request(uint8_t system_id, uint8_t component
         for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
             comm_send_ch(MAVLINK_COMM_0, buffer[i]);
         }
-    mavlink_msg_param_read_request_decode(last_msg, &packet2);
+    mavlink_msg_param_read_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_param_read_request_send(MAVLINK_COMM_1 , packet1.SYS_TYPE , packet1.DEV_ID , packet1.param_id );
-    mavlink_msg_param_read_request_decode(last_msg, &packet2);
+    mavlink_msg_param_read_send(MAVLINK_COMM_1 , packet1.param_id );
+    mavlink_msg_param_read_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
 
@@ -538,7 +536,7 @@ static void mavlink_test_usv_set(uint8_t system_id, uint8_t component_id, mavlin
 static void mavlink_test_tty(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
     mavlink_test_rocker(system_id, component_id, last_msg);
-    mavlink_test_param_read_request(system_id, component_id, last_msg);
+    mavlink_test_param_read(system_id, component_id, last_msg);
     mavlink_test_param_read_ack(system_id, component_id, last_msg);
     mavlink_test_param_write(system_id, component_id, last_msg);
     mavlink_test_param_write_ack(system_id, component_id, last_msg);

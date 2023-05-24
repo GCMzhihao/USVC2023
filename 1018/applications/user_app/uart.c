@@ -49,6 +49,9 @@ void uart_init(void)
 
     uart3 = rt_device_find("uart3");//遥控器
     uart3_config.baud_rate = BAUD_RATE_100000;
+    uart3_config.parity=PARITY_EVEN;
+    uart3_config.data_bits=DATA_BITS_9;
+    uart3_config.stop_bits=STOP_BITS_2;
     rt_device_control(uart3, RT_DEVICE_CTRL_CONFIG, &uart3_config);
     rt_device_open(uart3,RT_DEVICE_FLAG_DMA_RX);
     rt_device_set_rx_indicate(uart3,uart3_rx_callback);

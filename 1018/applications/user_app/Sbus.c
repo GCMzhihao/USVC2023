@@ -48,6 +48,17 @@ void SbusHandle(void)
             RevSbus[14] = (uint16_t)(RevBuf[21] & 0x1F) << 6 | (RevBuf[20] >> 2);
             RevSbus[15] = (uint16_t)RevBuf[22] << 3 | (RevBuf[21] >> 5);
             SbusFlag=RevBuf[23];
+            rocker.rightX=RevSbus[0];
+            rocker.rightY=RevSbus[1];
+            rocker.leftY=RevSbus[2];
+            rocker.leftX=RevSbus[3];
+            rocker.switchA=RevSbus[4];
+            rocker.switchB=RevSbus[5];
+            rocker.switchC=RevSbus[6];
+            rocker.switchD=RevSbus[7];
+            rocker.switchE=RevSbus[8];
+            rocker.switchF=RevSbus[9];
+            rocker.switchG=RevSbus[10];
          }
 
     }
