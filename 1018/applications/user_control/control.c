@@ -39,20 +39,20 @@ int USV_State_Init(void)
     return RT_EOK;
 }
 
-static int16_t YellowShipPWMConvert_LeftMotor(int16_t value)//输入1000-2000，输出1460-1000
+static int16_t YellowShipPWMConvert_LeftMotor(int16_t value)//
 {
-    return -0.46*value+1920;
+    return 0.46*value+1000;
 }
 
-static int16_t YellowShipPWMConvert_RightMotor(int16_t value)//输入1000-2000，输出1501-2000
+static int16_t YellowShipPWMConvert_RightMotor(int16_t value)//
 {
-    return 0.499*value+1002;
+    return 0.499*value+1000;
 }
 
 
 static int16_t YellowShipSteerPWMConvert(int16_t value)
 {
-    return ((1500-value)*0.3+1500);
+    return ((value-1024)*0.3+1024);
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 //小白船：dev_id:1-3
@@ -72,20 +72,19 @@ static int16_t YellowShipSteerPWMConvert(int16_t value)
 void RockerControl(void)
 {
     int16_t pwm1,pwm2,pwm3;
-    if(USV_State.AutoSail)
-        return;
-    if(sys_id==SYS_USV&&dev_id>0)
-    {
-        pwm1=rocker.leftY;
-        pwm2=rocker.rightX;
-        pwm3=1600;
-    }
-    else if(sys_id==SYS_USV&&dev_id==0)
-    {
-        pwm1 = YellowShipPWMConvert_LeftMotor(rocker.leftY);
-        pwm2 = YellowShipPWMConvert_RightMotor(rocker.leftY);
-        pwm3 = YellowShipSteerPWMConvert(rocker.rightX);
-    }
+//    if(USV_State.AutoSail)
+//        return;
+//    if(sys_id==SYS_USV&&dev_id>0)
+//    {
+//        pwm1=rocker.leftY;
+//        pwm2=rocker.rightX;
+//        pwm3=1600;
+//    }
+
+    pwm1 = YellowShipPWMConvert_LeftMotor(rocker.leftY);
+    pwm2 = YellowShipPWMConvert_RightMotor(rocker.leftY);
+    pwm3 = YellowShipSteerPWMConvert(rocker.rightX);
+
     MotorPWMSet(pwm1, pwm2, pwm3);
 }
 

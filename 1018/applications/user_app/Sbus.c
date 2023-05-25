@@ -27,8 +27,8 @@ void SbusReceive(uint8_t data)
 void SbusRocker_conver(void)
 {
     rocker.rightX=RevSbus[0];
-    rocker.rightY=RevSbus[1];
-    rocker.leftY=RevSbus[2];
+    rocker.leftY=RevSbus[1];
+    rocker.rightY=RevSbus[2];
     rocker.leftX=RevSbus[3];
     rocker.switchA=RevSbus[4];
     rocker.switchB=RevSbus[5];
