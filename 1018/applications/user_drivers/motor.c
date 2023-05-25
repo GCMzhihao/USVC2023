@@ -20,7 +20,7 @@ static void MX_TIM4_Init(void)
     TIM_MasterConfigTypeDef sMasterConfig = {0};
     TIM_OC_InitTypeDef sConfigOC = {0};
     htim4.Instance = TIM4;
-    htim4.Init.Prescaler = 84-1;
+    htim4.Init.Prescaler = 168-1;
     htim4.Init.CounterMode = TIM_COUNTERMODE_UP;
     htim4.Init.Period = 20000-1;//20ms------1ms对应1000占空比
     htim4.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
@@ -77,7 +77,7 @@ static int pwm4_init(void)
     }
 
     /* 设置PWM周期和脉冲宽度默认值 */
-    MotorPWMSet(1000,1500,1500);
+    MotorPWMSet(1024,1500,700);
     /* 使能设备 */
     HAL_TIM_PWM_Start(&htim4,TIM_CHANNEL_1);
     HAL_TIM_PWM_Start(&htim4,TIM_CHANNEL_2);

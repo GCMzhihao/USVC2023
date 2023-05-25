@@ -29,9 +29,9 @@ void mavlink_msg_proxy(mavlink_message_t *msg , mavlink_status_t* status)
             USV_State.AutoSail=0;
             mavlink_msg_rocker_decode(msg, &rocker);
         }
-        else if(msg->msgid==MAVLINK_MSG_ID_PARAM_READ_REQUEST)//读参数请求
+        else if(msg->msgid==MAVLINK_MSG_ID_PARAM_READ)//读参数请求
         {
-            uint8_t par_id=mavlink_msg_param_read_request_get_param_id(msg);
+            uint8_t par_id=mavlink_msg_param_read_get_param_id(msg);
             rt_sem_take(sem_uart1_tx, RT_WAITING_FOREVER);
 
             if(par_id==PARAM_USV_SPEED_P||par_id==PARAM_LIST_REQUEST)

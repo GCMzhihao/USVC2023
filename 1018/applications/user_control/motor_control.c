@@ -11,19 +11,19 @@
 
 void MotorControl(float dt)
 {
-    if(USV_State.Unlock==0)//未解锁
-    {
-
-        if(sys_id==SYS_USV&&dev_id>0)//白船
-            MotorPWMSet(1000, 1500, 1400);
-        else if(sys_id==SYS_USV&&dev_id==0)//黄色双体船
-            MotorPWMSet(1480, 1480, 1500);
-        return;
-    }
-    else if(USV_State.Unlock==1)//解锁
+//    if(USV_State.Unlock==0)//未解锁
+//    {
+//
+//        if(sys_id==SYS_USV&&dev_id>0)//白船
+//            MotorPWMSet(1000, 1500, 1400);
+//        else if(sys_id==SYS_USV&&dev_id==0)//黄色双体船
+//            MotorPWMSet(1480, 1480, 1500);
+//        return;
+//    }
+     if(USV_State.Unlock==1)//解锁
     {
         RockerControl();
-        CommandControl(dt);
+      //  CommandControl(dt);
         return;
     }
 }

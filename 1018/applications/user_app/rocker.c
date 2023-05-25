@@ -14,11 +14,11 @@ void RockerFlagCheck(void)
 {
     if(rocker.switchD>=1500)
     {
-        USV_State.AutoSail=1;
+        USV_State.back=1;
     }
     else if (rocker.switchD<=500)
     {
-        USV_State.AutoSail=0;
+        USV_State.back=0;
     }
 
 }
@@ -49,6 +49,7 @@ static void CheckLockState(void)
 void RockerHandle(void)
 {
     CheckLockState();
+    RockerFlagCheck();
 
 }
 
