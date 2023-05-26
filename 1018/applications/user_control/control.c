@@ -63,15 +63,16 @@ void RockerControl(void)
 
     if(USV_State.back)
     {
-        pwm3 =900;
+        pwm3 =1750;
     }
     else
     {
-        pwm3=600;
+        pwm3=1250;
     }
-    pwm1 = PWMConvert((rocker.leftY-353)*0.5);
-    pwm2 = -0.45*rocker.rightX+1000;
+    pwm1 = rocker.leftY;
+    pwm2 = rocker.rightX;
 
+    pwm1=353;//调试时用 关闭电机，调试舵机
     MotorPWMSet(pwm1, pwm2, pwm3);
 }
 
