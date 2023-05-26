@@ -121,7 +121,7 @@ void task_uart1_entry(void* parameter)//P900
     }
 }
 
-void task_uart2_entry(void* parameter)//UWB
+void task_uart2_entry(void* parameter)//GPS
 {
     uint8_t ch;
     while (1)

@@ -66,7 +66,7 @@ void SbusHandle(void)
             RevSbus[15] = (uint16_t)RevBuf[22] << 3 | (RevBuf[21] >> 5);
             SbusFlag=RevBuf[23];
 
-        SbusRocker_conver();
+        //SbusRocker_conver();
 
 
          }
