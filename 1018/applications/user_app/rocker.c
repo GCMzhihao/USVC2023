@@ -28,7 +28,7 @@ static void CheckLockState(void)
 
     if(USV_State.Unlock)//检测到是解锁状态
     {
-        if(rocker.leftY==353&&rocker.leftX==353&&rocker.rightY==353&&rocker.rightX==1694)//加锁。左摇杆打到左下，右摇杆打到右下（外八字）
+        if(rocker.leftY==1000&&rocker.leftX==1000&&rocker.rightY==1000&&rocker.rightX==2000)//加锁。左摇杆打到左下，右摇杆打到右下（外八字）
         {
             USV_State.Unlock=0;//锁定
             BuzzerChangeState(beep_lock);
@@ -36,7 +36,7 @@ static void CheckLockState(void)
     }
     else//检测到是锁定状态
     {
-        if(rocker.rightX==353&&rocker.rightY==353&&rocker.leftY==353&&rocker.leftX==1694)//解锁。左摇杆打到右下，右摇杆打到左下（内八字）
+        if(rocker.rightX==1000&&rocker.rightY==1000&&rocker.leftY==1000&&rocker.leftX==2000)//解锁。左摇杆打到右下，右摇杆打到左下（内八字）
         {
             USV_State.Unlock=1;//解锁
             BuzzerChangeState(beep_unlock);

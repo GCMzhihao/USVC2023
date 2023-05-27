@@ -77,7 +77,7 @@ static int pwm4_init(void)
     }
 
     /* 设置PWM周期和脉冲宽度默认值 */
-    MotorPWMSet(353,1500,700);
+    MotorPWMSet(1000,1500,700);
     /* 使能设备 */
     HAL_TIM_PWM_Start(&htim4,TIM_CHANNEL_1);
     HAL_TIM_PWM_Start(&htim4,TIM_CHANNEL_2);

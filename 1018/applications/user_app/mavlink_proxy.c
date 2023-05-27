@@ -183,15 +183,15 @@ void mavlink_msg_send(void)
    if( rt_sem_trytake(sem_uart1_tx)!=RT_EOK)
        return;
 
-//   mavlink_msg_usv_state_pack(sys_id, dev_id,&mav_msg,
-//           USV_State.X,
-//           USV_State.Y,
-//           USV_State.Speed,
-//           USV_State.Course,
-//           USV_State.Heading);
+    mavlink_msg_usv_state_pack(sys_id, dev_id,&mav_msg,
+           GPS.KSXT.Longitude,
+           GPS.KSXT.Latitude,
+           GPS.KSXT.Vel,
+           GPS.KSXT.heading,
+           USV_State.BatteryVoltage);
+    mav_length+=mavlink_msg_to_send_buffer(&mav_buffer[mav_length], &mav_msg);
+//   mavlink_msg_rocker_pack(sys_id, dev_id, &mav_msg, rocker.leftX, rocker.leftY, rocker.rightX, rocker.rightY, rocker.switchA, rocker.switchB, rocker.switchC, rocker.switchD, rocker.switchE, rocker.switchF, rocker.switchG);
 //   mav_length+=mavlink_msg_to_send_buffer(&mav_buffer[mav_length], &mav_msg);
-   mavlink_msg_rocker_pack(sys_id, dev_id, &mav_msg, rocker.leftX, rocker.leftY, rocker.rightX, rocker.rightY, rocker.switchA, rocker.switchB, rocker.switchC, rocker.switchD, rocker.switchE, rocker.switchF, rocker.switchG);
-   mav_length+=mavlink_msg_to_send_buffer(&mav_buffer[mav_length], &mav_msg);
-   rt_device_write(uart1, 0, mav_buffer, mav_length);
+    rt_device_write(uart1, 0, mav_buffer, mav_length);
     rt_sem_release(sem_uart1_tx);//释放uart1发送
 }

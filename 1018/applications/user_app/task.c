@@ -68,7 +68,6 @@ void task_50ms_entry(void* parameter)
     {
         rt_sem_take(sem_50ms, RT_WAITING_FOREVER);
         led_run();
-        mavlink_msg_send();
     }
 }
 
@@ -78,6 +77,7 @@ void task_100ms_entry(void* parameter)
     while(1)
     {
         rt_sem_take(sem_100ms, RT_WAITING_FOREVER);
+        mavlink_msg_send();
         BuzzerRun(dt);
         MotorControl(dt);
 

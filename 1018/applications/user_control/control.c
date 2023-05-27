@@ -69,10 +69,10 @@ void RockerControl(void)
     {
         pwm3=1250;
     }
-    pwm1 = rocker.leftY;
-    pwm2 = rocker.rightX;
+    pwm1 = (rocker.leftY-1000)*0.2+1000;
+    pwm2 = 0.5*(rocker.rightX-1500)+1500;
 
-    pwm1=353;//调试时用 关闭电机，调试舵机
+    pwm1=1000;//调试时用 关闭电机，调试舵机
     MotorPWMSet(pwm1, pwm2, pwm3);
 }
 
