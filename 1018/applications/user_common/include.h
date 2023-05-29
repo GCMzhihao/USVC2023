@@ -24,6 +24,7 @@
 #include <Filter.h>
 #include <./MAVLINK/C/tty/mavlink.h>
 #include <math_matrix.h>
+#include<lla2xyz.h>
 
 #include <gps.h>
 #include <w25qxx.h>

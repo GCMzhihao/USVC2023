@@ -28,8 +28,8 @@ typedef struct
     uint8_t RightRudderOk:1;//右舵机中位校准标志
     uint8_t Id;
     uint8_t back;//前进后退标志 1表后退
-    float X;
-    float Y;
+    double_t X;
+    double_t Y;
     float Speed;
     float Course;
     float Heading;

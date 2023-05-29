@@ -80,7 +80,6 @@ void task_100ms_entry(void* parameter)
         mavlink_msg_send();
         BuzzerRun(dt);
         MotorControl(dt);
-
     }
 }
 
@@ -133,6 +132,7 @@ void task_uart2_entry(void* parameter)//GPS
             rt_sem_take(sem_uart2_rx, RT_WAITING_FOREVER);
         }
         uart2_analysis(ch);
+
 
     }
 }

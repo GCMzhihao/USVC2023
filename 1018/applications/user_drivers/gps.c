@@ -285,7 +285,6 @@ void Heading_Analysis(uint8_t *buf)
     GPS.Headinga.ExtSolSta=atoi(GetNMEA_Pos(buf, 15));
     GPS.Headinga.SigMask=atoi(GetNMEA_Pos(buf, 17));
 
-
 }
 void KSXT_Analysis(uint8_t *buf)
 {
@@ -330,6 +329,7 @@ void NMEA0183_Analysis(uint8_t *buf)
 //        Heading_Analysis(buf);
     if(strstr((char*)buf,"$KSXT")!=NULL)
         KSXT_Analysis(buf);
+
 
 }
 
