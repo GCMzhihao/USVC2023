@@ -5,8 +5,8 @@
 
 
 typedef struct __mavlink_cmd_ack_t {
- uint8_t cmd_id; /*<  ÃüÁîÀàĞÍ£¬Ïê¼ûÃüÁî¶¨Òå*/
- uint8_t cmd_ack_id; /*<  ÃüÁîÓ¦´ğ±êÖ¾£¬Ïê¼ûÃüÁîÓ¦´ğ±êÖ¾¶¨Òå*/
+ uint8_t cmd_id; /*<  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½î¶¨ï¿½ï¿½*/
+ uint8_t cmd_ack_id; /*<  ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½*/
 } mavlink_cmd_ack_t;
 
 #define MAVLINK_MSG_ID_CMD_ACK_LEN 2
@@ -44,8 +44,8 @@ typedef struct __mavlink_cmd_ack_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param cmd_id  ÃüÁîÀàĞÍ£¬Ïê¼ûÃüÁî¶¨Òå
- * @param cmd_ack_id  ÃüÁîÓ¦´ğ±êÖ¾£¬Ïê¼ûÃüÁîÓ¦´ğ±êÖ¾¶¨Òå
+ * @param cmd_id  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½î¶¨ï¿½ï¿½
+ * @param cmd_ack_id  ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_cmd_ack_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -75,8 +75,8 @@ static inline uint16_t mavlink_msg_cmd_ack_pack(uint8_t system_id, uint8_t compo
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param cmd_id  ÃüÁîÀàĞÍ£¬Ïê¼ûÃüÁî¶¨Òå
- * @param cmd_ack_id  ÃüÁîÓ¦´ğ±êÖ¾£¬Ïê¼ûÃüÁîÓ¦´ğ±êÖ¾¶¨Òå
+ * @param cmd_id  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½î¶¨ï¿½ï¿½
+ * @param cmd_ack_id  ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_cmd_ack_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -132,8 +132,8 @@ static inline uint16_t mavlink_msg_cmd_ack_encode_chan(uint8_t system_id, uint8_
  * @brief Send a cmd_ack message
  * @param chan MAVLink channel to send the message
  *
- * @param cmd_id  ÃüÁîÀàĞÍ£¬Ïê¼ûÃüÁî¶¨Òå
- * @param cmd_ack_id  ÃüÁîÓ¦´ğ±êÖ¾£¬Ïê¼ûÃüÁîÓ¦´ğ±êÖ¾¶¨Òå
+ * @param cmd_id  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½î¶¨ï¿½ï¿½
+ * @param cmd_ack_id  ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -202,7 +202,7 @@ static inline void mavlink_msg_cmd_ack_send_buf(mavlink_message_t *msgbuf, mavli
 /**
  * @brief Get field cmd_id from cmd_ack message
  *
- * @return  ÃüÁîÀàĞÍ£¬Ïê¼ûÃüÁî¶¨Òå
+ * @return  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½î¶¨ï¿½ï¿½
  */
 static inline uint8_t mavlink_msg_cmd_ack_get_cmd_id(const mavlink_message_t* msg)
 {
@@ -212,7 +212,7 @@ static inline uint8_t mavlink_msg_cmd_ack_get_cmd_id(const mavlink_message_t* ms
 /**
  * @brief Get field cmd_ack_id from cmd_ack message
  *
- * @return  ÃüÁîÓ¦´ğ±êÖ¾£¬Ïê¼ûÃüÁîÓ¦´ğ±êÖ¾¶¨Òå
+ * @return  ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½
  */
 static inline uint8_t mavlink_msg_cmd_ack_get_cmd_ack_id(const mavlink_message_t* msg)
 {

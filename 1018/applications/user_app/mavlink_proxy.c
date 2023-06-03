@@ -134,7 +134,7 @@ void mavlink_msg_proxy(mavlink_message_t *msg , mavlink_status_t* status)
         else if(msg->msgid==MAVLINK_MSG_ID_CMD_WRITE)
         {
             uint8_t cmd_id;
-            cmd_id=mavlink_msg_cmd_ack_get_cmd_id(msg);
+            cmd_id=mavlink_msg_cmd_write_get_cmd_id(msg);
             rt_sem_take(sem_uart1_tx, RT_WAITING_FOREVER);
             switch(cmd_id)
             {
