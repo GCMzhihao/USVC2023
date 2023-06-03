@@ -56,7 +56,7 @@ namespace MavLink
 			{4, new MavPacketInfo(Deserialize_PARAM_WRITE_ACK, 54)},
 			{5, new MavPacketInfo(Deserialize_CMD_WRITE, 220)},
 			{6, new MavPacketInfo(Deserialize_CMD_ACK, 251)},
-			{7, new MavPacketInfo(Deserialize_USV_STATE, 99)},
+			{7, new MavPacketInfo(Deserialize_USV_STATE, 40)},
 			{8, new MavPacketInfo(Deserialize_USV_SET, 174)},
 		};
 
@@ -135,11 +135,11 @@ namespace MavLink
 		{
 			return new Msg_usv_state
 			{
-				longitude = bitconverter.ToSingle(bytes, offset + 0),
-				latitude = bitconverter.ToSingle(bytes, offset + 4),
-				speed = bitconverter.ToSingle(bytes, offset + 8),
-				heading = bitconverter.ToSingle(bytes, offset + 12),
-				battery_voltage = bitconverter.ToSingle(bytes, offset + 16),
+				longitude = bitconverter.ToDouble(bytes, offset + 0),
+				latitude = bitconverter.ToDouble(bytes, offset + 8),
+				speed = bitconverter.ToSingle(bytes, offset + 16),
+				heading = bitconverter.ToSingle(bytes, offset + 20),
+				battery_voltage = bitconverter.ToSingle(bytes, offset + 24),
 			};
 		}
 
@@ -221,11 +221,11 @@ namespace MavLink
 		internal static int Serialize_USV_STATE(this Msg_usv_state msg, byte[] bytes, ref int offset)
 		{
 			bitconverter.GetBytes(msg.longitude, bytes, offset + 0);
-			bitconverter.GetBytes(msg.latitude, bytes, offset + 4);
-			bitconverter.GetBytes(msg.speed, bytes, offset + 8);
-			bitconverter.GetBytes(msg.heading, bytes, offset + 12);
-			bitconverter.GetBytes(msg.battery_voltage, bytes, offset + 16);
-			offset += 20;
+			bitconverter.GetBytes(msg.latitude, bytes, offset + 8);
+			bitconverter.GetBytes(msg.speed, bytes, offset + 16);
+			bitconverter.GetBytes(msg.heading, bytes, offset + 20);
+			bitconverter.GetBytes(msg.battery_voltage, bytes, offset + 24);
+			offset += 28;
 			return 7;
 		}
 

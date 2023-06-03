@@ -42,10 +42,11 @@ void task_5ms_entry(void* parameter)
 
 void task_10ms_entry(void* parameter)
 {
-  //  float dt = (uint32_t)parameter*0.001f;
+    float dt = (uint32_t)parameter*0.001f;
     while(1)
     {
         rt_sem_take(sem_10ms, RT_WAITING_FOREVER);
+        MotorControl(dt);
     }
 }
 
@@ -79,7 +80,6 @@ void task_100ms_entry(void* parameter)
         rt_sem_take(sem_100ms, RT_WAITING_FOREVER);
         mavlink_msg_send();
         BuzzerRun(dt);
-        MotorControl(dt);
     }
 }
 

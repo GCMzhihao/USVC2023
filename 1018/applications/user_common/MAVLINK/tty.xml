@@ -93,8 +93,8 @@
 	  <field type="uint8_t" name="cmd_ack_id" enum="CMD_ACK_FALG">命令应答标志，详见命令应答标志定义</field>
     </message>
     <message id="7" name="USV_STATE">
-		<field type="float" name="longitude"></field>
-		<field type="float" name="latitude"></field>
+		<field type="double" name="longitude"></field>
+		<field type="double" name="latitude"></field>
 		<field type="float" name="speed"></field>
 		<field type="float" name="heading"></field>
 		<field type="float" name="battery_voltage"></field>

@@ -30,6 +30,7 @@ typedef struct
     uint8_t back;//前进后退标志 1表后退
     double_t X;
     double_t Y;
+    float longitude;
     float Speed;
     float Course;
     float Heading;

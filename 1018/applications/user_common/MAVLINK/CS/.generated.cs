@@ -293,12 +293,12 @@ namespace MavLink
 		/// <summary>
 		/// 
 		/// </summary>
-		public float longitude;
+		public double longitude;
 
 		/// <summary>
 		/// 
 		/// </summary>
-		public float latitude;
+		public double latitude;
 
 		/// <summary>
 		/// 

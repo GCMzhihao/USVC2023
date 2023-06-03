@@ -430,7 +430,7 @@ static void mavlink_test_usv_state(uint8_t system_id, uint8_t component_id, mavl
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_usv_state_t packet_in = {
-        17.0,45.0,73.0,101.0,129.0
+        123.0,179.0,129.0,157.0,185.0
     };
     mavlink_usv_state_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));

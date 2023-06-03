@@ -23,7 +23,7 @@ void MotorControl(float dt)
      if(USV_State.Unlock==1)//解锁
     {
         RockerControl();
-      //  CommandControl(dt);
+        CommandControl(dt);
         return;
     }
 }
