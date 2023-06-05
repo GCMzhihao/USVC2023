@@ -15,8 +15,8 @@ PID USV_Heading_PID;
 _USV_SET USV_SET;
 void USV_PID_Init(void)
 {
-    PIDInit(&USV_Speed_PID, parameters.usv_speed_pid.kp, parameters.usv_speed_pid.ki, parameters.usv_speed_pid.kd, 40, 400, 0);
-    PIDInit(&USV_Heading_PID, parameters.usv_heading_pid.kp, parameters.usv_heading_pid.ki, parameters.usv_heading_pid.kd, 100, 500, 0);
+    PIDInit(&USV_Speed_PID, parameters.usv_speed_pid.kp, parameters.usv_speed_pid.ki, parameters.usv_speed_pid.kd, 500, 1000, 0);
+    PIDInit(&USV_Heading_PID, parameters.usv_heading_pid.kp, parameters.usv_heading_pid.ki, parameters.usv_heading_pid.kd, 100, 1000, 0);
 }
 int USV_State_Init(void)
 {
@@ -47,14 +47,10 @@ int USV_State_Init(void)
 void RockerControl(void)
 {
     int16_t pwm1,pwm2,pwm3;
-    if(USV_State.AutoSail)
+//    if(USV_State.AutoSail)
+//        return;
+    if(rocker.switchD==2000)
         return;
-//    if(sys_id==SYS_USV&&dev_id>0)
-//    {
-//        pwm1=rocker.leftY;
-//        pwm2=rocker.rightX;
-//        pwm3=1600;
-//    }
 
     if(USV_State.back)
     {
@@ -64,6 +60,7 @@ void RockerControl(void)
     {
         pwm3=1250;
     }
+
     pwm1 = 0.4*(rocker.leftY-1000)+1000;
     pwm2 = 0.5*(rocker.rightX-1500)+1500;
 
@@ -74,24 +71,26 @@ void RockerControl(void)
 void CommandControl(float dt)
 {
     uint16_t pwm1,pwm2,pwm3;
-    if(!USV_State.AutoSail)
+//    if(!USV_State.AutoSail)
+//        return;
+    if(rocker.switchD==1000)
         return;
 
     USV_Speed_PID.dt=dt;
-    USV_Speed_PID.SetValue=0.5;
+    USV_Speed_PID.SetValue=1.5;
     USV_Speed_PID.ActualValue=GPS.KSXT.Vel;
     PIDCalculation(&USV_Speed_PID);
     pwm1=USV_Speed_PID.OutPut+1000;
+
     if(pwm1<1000)
     {
         pwm1=1000;
     }
+
     pwm2 = 0.5*(rocker.rightX-1500)+1500;
     pwm3=1500;
     MotorPWMSet(pwm1,pwm2, pwm3);
 
-
-  //  MotorPWMSet(pwm1, pwm2, pwm3);
 }
 
 
