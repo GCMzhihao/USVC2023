@@ -87,7 +87,18 @@ void CommandControl(float dt)
         pwm1=1000;
     }
 
-    pwm2 = 0.5*(rocker.rightX-1500)+1500;
+    USV_Heading_PID.dt=dt;
+    USV_Heading_PID.SetValue=USV_State.Heading;//设定值等于当前朝向
+    USV_Heading_PID.ActualValue=GPS.KSXT.heading;
+    USV_Heading_PID(&USV_Heading_PID);
+    pwm2=USV_Heading_PID.OutPut+1000;
+
+    pwm1<1000?:1000,pwm1;
+    pwm1>2000?:2000,pwm1;
+
+    pwm2<1000?:1000,pwm2;
+    pwm2>2000?:2000,pwm2;
+
     pwm3=1500;
     MotorPWMSet(pwm1,pwm2, pwm3);
 
