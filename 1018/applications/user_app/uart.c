@@ -89,7 +89,7 @@ void uart2_analysis(uint8_t c)
             buf[cnt++]=c;
             NMEA0183_Analysis(buf);
             lla2xyz(GPS.KSXT.Longitude, GPS.KSXT.Latitude, GPS.KSXT.Altitude);
-            printf("longitude: %lf,latitude: %lf,x: %f,Y: %f \n",GPS.KSXT.Longitude, GPS.KSXT.Latitude, USV_State.X, USV_State.Y);
+           // printf("longitude: %lf,latitude: %lf,x: %f,Y: %f \n",GPS.KSXT.Longitude, GPS.KSXT.Latitude, USV_State.X, USV_State.Y);
         }
 
         break;

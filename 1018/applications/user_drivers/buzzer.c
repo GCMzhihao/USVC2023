@@ -89,8 +89,9 @@ void BuzzerRun(float dt)
             BuzzerOff();
         break;
     case beep_help:
-        if(time%2==0)
-            BuzzerOn();
+        if(time%20==0)
+            {BuzzerOn();
+            buzzer.buzzer_state=beep_off;}
         else
             BuzzerOff();
         break;

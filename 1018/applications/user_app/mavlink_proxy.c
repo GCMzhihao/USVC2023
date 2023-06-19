@@ -19,6 +19,7 @@ void mavlink_msg_proxy(mavlink_message_t *msg , mavlink_status_t* status)
     uint16_t mav_length;
     if(msg->sysid == SYS_ROCKER)
     {
+        USV_Rocker_lost_cnt=0;//丢失计数清零
         USV_State.AutoSail=0;
         mavlink_msg_rocker_decode(msg, &rocker);
     }

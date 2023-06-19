@@ -19,7 +19,7 @@ typedef enum
   beep_help,
   beep_lock,
   beep_unlock,
-  beep_rudder_offset
+  beep_rudder_offset,
 }_buzzer_state;
 
 typedef struct

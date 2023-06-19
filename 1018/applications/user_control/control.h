@@ -45,9 +45,12 @@ extern PID USV_Speed_PID;
 extern PID USV_Heading_PID;
 extern _USV_State USV_State;
 extern _USV_SET USV_SET;
+extern rt_uint16_t USV_Rocker_lost_cnt;
 
 int USV_State_Init(void);
 void RockerControl(void);
 void CommandControl(float dt);
 void USV_PID_Init(void);
+void USV_Back_Check(void);
+void USV_Rocker_lost_check(void);
 #endif /* APPLICATIONS_USER_CONTROL_CONTROL_H_ */

@@ -13,11 +13,22 @@ _USV_State USV_State;
 PID USV_Speed_PID;
 PID USV_Heading_PID;
 _USV_SET USV_SET;
+rt_uint16_t USV_Rocker_lost_cnt;
 void USV_PID_Init(void)
 {
     PIDInit(&USV_Speed_PID, parameters.usv_speed_pid.kp, parameters.usv_speed_pid.ki, parameters.usv_speed_pid.kd, 500, 1000, 0);
-    PIDInit(&USV_Heading_PID, parameters.usv_heading_pid.kp, parameters.usv_heading_pid.ki, parameters.usv_heading_pid.kd, 100, 1000, 0);
+    PIDInit(&USV_Heading_PID, parameters.usv_heading_pid.kp, parameters.usv_heading_pid.ki, parameters.usv_heading_pid.kd, 100, 250, 0);
 }
+void USV_Rocker_lost_check(void)
+{
+    USV_Rocker_lost_cnt++;
+    if(USV_Rocker_lost_cnt>=10)
+    {
+        USV_State.Unlock=0;
+        USV_Rocker_lost_cnt=10;
+    }
+}
+
 int USV_State_Init(void)
 {
     USV_State.AutoSail=0;
@@ -39,6 +50,18 @@ int USV_State_Init(void)
     return RT_EOK;
 }
 
+void USV_Back_Check(void)
+{
+    if(rocker.switchC==1000)
+    {
+        USV_State.back=1;
+    }
+    else if (rocker.switchC==2000)
+    {
+        USV_State.back=0;
+    }
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////
 //小白船：dev_id:1-3
 //PWM通道1：推进器
@@ -51,21 +74,35 @@ void RockerControl(void)
 //        return;
     if(rocker.switchD==2000)
         return;
-
-    if(USV_State.back)
+    //USV_Heading_PID.SetValue=GPS.KSXT.heading;//设定值等于当前朝向
+    USV_Heading_PID.SetValue=45;
+    USV_Heading_PID.Integral=0;
+    USV_Speed_PID.Integral=0;
+    if(sys_id==SYS_USV&&dev_id==0)//小黄船
     {
-        pwm3 =1750;
-    }
-    else
-    {
-        pwm3=1250;
-    }
+        if(USV_State.back)
+        {
+            pwm3 =1750;
+        }
+        else
+        {
+            pwm3=1250;
+        }
 
-    pwm1 = 0.4*(rocker.leftY-1000)+1000;
-    pwm2 = 0.5*(rocker.rightX-1500)+1500;
+        pwm1 = 0.4*(rocker.leftY-1000)+1000;
+        pwm2 = 0.5*(rocker.rightX-1500)+1500;
+    }
+    else if (sys_id==SYS_USV&&dev_id>0) //小白船
+    {
+        pwm1 = 0.4*(rocker.leftY-1000)+1000;
+        pwm2 = 0.5*(rocker.rightX-1500)+1500;
+        pwm3 = 1700;
+
+    }
 
   //  pwm1=1000;//调试时用 关闭电机，调试舵机
     MotorPWMSet(pwm1, pwm2, pwm3);
+
 }
 
 void CommandControl(float dt)
@@ -77,29 +114,64 @@ void CommandControl(float dt)
         return;
 
     USV_Speed_PID.dt=dt;
-    USV_Speed_PID.SetValue=1.5;
+
+
+    if(rocker.switchA==1000)
+    {
+        USV_Speed_PID.SetValue=2;
+    }
+    else if (rocker.switchA==1500)
+    {
+        USV_Speed_PID.SetValue=2.5;
+
+    }
+    else if (rocker.switchA==2000)
+    {
+        USV_Speed_PID.SetValue=0;
+    }
+
+
+   // USV_Speed_PID.SetValue=1.5;
     USV_Speed_PID.ActualValue=GPS.KSXT.Vel;
     PIDCalculation(&USV_Speed_PID);
     pwm1=USV_Speed_PID.OutPut+1000;
 
-    if(pwm1<1000)
-    {
-        pwm1=1000;
-    }
-
     USV_Heading_PID.dt=dt;
-    USV_Heading_PID.SetValue=USV_State.Heading;//设定值等于当前朝向
+
     USV_Heading_PID.ActualValue=GPS.KSXT.heading;
-    USV_Heading_PID(&USV_Heading_PID);
-    pwm2=USV_Heading_PID.OutPut+1000;
+    float err;
+    err=USV_Heading_PID.SetValue-USV_Heading_PID.ActualValue;
+    if(err>180)
+        err-=360;
+    else if(err<-180)
+        err+=360;
+    USV_Heading_PID.ActualValue=USV_Heading_PID.SetValue-err;
+    PIDCalculation(&USV_Heading_PID);
+    pwm2=USV_Heading_PID.OutPut+1500;
+    //pwm2 = 0.5*(rocker.rightX-1500)+1500;
 
-    pwm1<1000?:1000,pwm1;
-    pwm1>2000?:2000,pwm1;
+    if(sys_id==SYS_USV&&dev_id==0)//小黄船
+        {
+            if(USV_State.back)
+            {
+                pwm3 =1750;
+            }
+            else
+            {
+                pwm3=1250;
+            }
+        }
+    else if (sys_id==SYS_USV&&dev_id>0) //小白船
+        {
+            pwm3 = 1700;
+        }
 
-    pwm2<1000?:1000,pwm2;
-    pwm2>2000?:2000,pwm2;
+    pwm1=pwm1<1000?1000:pwm1;
+    pwm1=pwm1>2000?2000:pwm1;
 
-    pwm3=1500;
+    pwm2=pwm2<1000?1000:pwm2;
+    pwm2=pwm2>2000?2000:pwm2;
+
     MotorPWMSet(pwm1,pwm2, pwm3);
 
 }

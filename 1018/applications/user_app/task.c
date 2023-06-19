@@ -89,6 +89,7 @@ void task_200ms_entry(void* parameter)
     while(1)
     {
         rt_sem_take(sem_200ms, RT_WAITING_FOREVER);
+        USV_Rocker_lost_check();
         MotorControl(dt);
 
     }
@@ -100,6 +101,7 @@ void task_1000ms_entry(void* parameter)
     while(1)
     {
         rt_sem_take(sem_1000ms, RT_WAITING_FOREVER);
+
     }
 }
 
