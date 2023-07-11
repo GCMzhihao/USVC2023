@@ -12,6 +12,7 @@ int user_app_init(void)
 {
     user_nvic_init();
     user_sem_init();
+    user_mutex_init();
     user_timer_init();
     param_read();
     USV_State_Init();

@@ -72,7 +72,9 @@ using System.Reflection;
 		PARAM_USV_HEADING_P = 4,
 		PARAM_USV_HEADING_I = 5,
 		PARAM_USV_HEADING_D = 6,
-		PARAM_TYPE_ENUM_END = 7,
+		PARAM_USV_LEFT_RUDDER_MID = 7,
+		PARAM_USV_RIGHT_RUDDER_MID = 8,
+		PARAM_TYPE_ENUM_END = 9,
 
 	}
 
@@ -309,6 +311,11 @@ namespace MavLink
 		/// 
 		/// </summary>
 		public float heading;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public float Track;
 
 		/// <summary>
 		/// 

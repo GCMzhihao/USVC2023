@@ -430,7 +430,7 @@ static void mavlink_test_usv_state(uint8_t system_id, uint8_t component_id, mavl
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_usv_state_t packet_in = {
-        123.0,179.0,129.0,157.0,185.0
+        123.0,179.0,129.0,157.0,185.0,213.0
     };
     mavlink_usv_state_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
@@ -438,6 +438,7 @@ static void mavlink_test_usv_state(uint8_t system_id, uint8_t component_id, mavl
         packet1.latitude = packet_in.latitude;
         packet1.speed = packet_in.speed;
         packet1.heading = packet_in.heading;
+        packet1.Track = packet_in.Track;
         packet1.battery_voltage = packet_in.battery_voltage;
         
         
@@ -453,12 +454,12 @@ static void mavlink_test_usv_state(uint8_t system_id, uint8_t component_id, mavl
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_usv_state_pack(system_id, component_id, &msg , packet1.longitude , packet1.latitude , packet1.speed , packet1.heading , packet1.battery_voltage );
+    mavlink_msg_usv_state_pack(system_id, component_id, &msg , packet1.longitude , packet1.latitude , packet1.speed , packet1.heading , packet1.Track , packet1.battery_voltage );
     mavlink_msg_usv_state_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_usv_state_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.longitude , packet1.latitude , packet1.speed , packet1.heading , packet1.battery_voltage );
+    mavlink_msg_usv_state_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.longitude , packet1.latitude , packet1.speed , packet1.heading , packet1.Track , packet1.battery_voltage );
     mavlink_msg_usv_state_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -471,7 +472,7 @@ static void mavlink_test_usv_state(uint8_t system_id, uint8_t component_id, mavl
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_usv_state_send(MAVLINK_COMM_1 , packet1.longitude , packet1.latitude , packet1.speed , packet1.heading , packet1.battery_voltage );
+    mavlink_msg_usv_state_send(MAVLINK_COMM_1 , packet1.longitude , packet1.latitude , packet1.speed , packet1.heading , packet1.Track , packet1.battery_voltage );
     mavlink_msg_usv_state_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }

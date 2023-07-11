@@ -120,7 +120,7 @@ typedef struct
     float Altitude;//海拔高度 m
     float heading;//方位角 0~360°
     float pitch;//俯仰角 -90~90°
-    float TrackTure;//0~360°
+    float TrackTure;//真北航迹角0~360°
     float Vel;//速度
     float Roll;//橫滾角 0~360°
     uint8_t PosQual;//GNSS 定位质量指示符0： 定位不可用或无效；1： 单点定位；2： RTK 浮点解；3： RTK 固定解

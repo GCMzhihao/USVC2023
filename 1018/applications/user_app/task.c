@@ -9,9 +9,6 @@
  */
 #include <include.h>
 
-static rt_thread_t task_2ms = RT_NULL;
-static rt_thread_t task_5ms = RT_NULL;
-static rt_thread_t task_10ms = RT_NULL;
 static rt_thread_t task_20ms = RT_NULL;
 static rt_thread_t task_50ms = RT_NULL;
 static rt_thread_t task_100ms = RT_NULL;
@@ -21,41 +18,13 @@ static rt_thread_t task_uart1 = RT_NULL;
 static rt_thread_t task_uart2 = RT_NULL;
 static rt_thread_t task_uart3 = RT_NULL;
 
-void task_2ms_entry(void* parameter)
-{
-    //float dt = (uint32_t)parameter*0.001f;
-    while(1)
-    {
-        rt_sem_take(sem_2ms, RT_WAITING_FOREVER);
-    }
-
-}
-
-void task_5ms_entry(void* parameter)
-{
-//    float dt = (uint32_t)parameter*0.001f;
-    while(1)
-    {
-        rt_sem_take(sem_5ms, RT_WAITING_FOREVER);
-    }
-}
-
-void task_10ms_entry(void* parameter)
-{
-   // float dt = (uint32_t)parameter*0.001f;
-    while(1)
-    {
-        rt_sem_take(sem_10ms, RT_WAITING_FOREVER);
-
-    }
-}
-
 void task_20ms_entry(void* parameter)
 {
   //  float dt = (uint32_t)parameter*0.001f;
     while(1)
     {
         rt_sem_take(sem_20ms, RT_WAITING_FOREVER);
+        //rt_sem_control(sem_20ms, RT_IPC_CMD_RESET, 0);//清零信号量
         RockerHandle();
         voltage_measure();
 
@@ -68,6 +37,7 @@ void task_50ms_entry(void* parameter)
     while(1)
     {
         rt_sem_take(sem_50ms, RT_WAITING_FOREVER);
+        //rt_sem_control(sem_50ms, RT_IPC_CMD_RESET, 0);//清零信号量
         led_run();
     }
 }
@@ -78,6 +48,7 @@ void task_100ms_entry(void* parameter)
     while(1)
     {
         rt_sem_take(sem_100ms, RT_WAITING_FOREVER);
+        //rt_sem_control(sem_100ms, RT_IPC_CMD_RESET, 0);//清零信号量
         mavlink_msg_send();
         BuzzerRun(dt);
     }
@@ -89,9 +60,9 @@ void task_200ms_entry(void* parameter)
     while(1)
     {
         rt_sem_take(sem_200ms, RT_WAITING_FOREVER);
+       // rt_sem_control(sem_200ms, RT_IPC_CMD_RESET, 0);//清零信号量
         USV_Rocker_lost_check();
         MotorControl(dt);
-
     }
 }
 
@@ -101,6 +72,7 @@ void task_1000ms_entry(void* parameter)
     while(1)
     {
         rt_sem_take(sem_1000ms, RT_WAITING_FOREVER);
+        //rt_sem_control(sem_1000ms, RT_IPC_CMD_RESET, 0);
 
     }
 }
@@ -135,8 +107,6 @@ void task_uart2_entry(void* parameter)//GPS
             rt_sem_take(sem_uart2_rx, RT_WAITING_FOREVER);
         }
         uart2_analysis(ch);
-
-
     }
 }
 void task_uart3_entry(void* parameter)//Sbus
@@ -156,36 +126,6 @@ void task_uart3_entry(void* parameter)//Sbus
 
 rt_err_t user_task_init(void)
 {
-    /* 创建线程 */
-    task_2ms = rt_thread_create("task2ms",
-                                task_2ms_entry,
-                                (void *)2,
-                                TASK_2MS_STACK_SIZE,
-                                TASK_2MS_PRIORITY,
-                                TASK_2MS_TIMESLICE);
-    if(task_2ms!=RT_NULL)/* 启动线程 */
-        rt_thread_startup(task_2ms);
-
-    /* 创建线程 */
-    task_5ms = rt_thread_create("task5ms",
-                                task_5ms_entry,
-                                (void *)5,
-                                TASK_5MS_STACK_SIZE,
-                                TASK_5MS_PRIORITY,
-                                TASK_5MS_TIMESLICE);
-    if(task_5ms!=RT_NULL)/* 启动线程 */
-        rt_thread_startup(task_5ms);
-
-    /* 创建线程 */
-    task_10ms = rt_thread_create("task10ms",
-                                task_10ms_entry,
-                                (void *)10,
-                                TASK_10MS_STACK_SIZE,
-                                TASK_10MS_PRIORITY,
-                                TASK_10MS_TIMESLICE);
-    if(task_10ms!=RT_NULL)/* 启动线程 */
-        rt_thread_startup(task_10ms);
-
     /* 创建线程 */
     task_20ms = rt_thread_create("task20ms",
                                 task_20ms_entry,

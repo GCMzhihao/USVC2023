@@ -56,7 +56,7 @@ namespace MavLink
 			{4, new MavPacketInfo(Deserialize_PARAM_WRITE_ACK, 54)},
 			{5, new MavPacketInfo(Deserialize_CMD_WRITE, 220)},
 			{6, new MavPacketInfo(Deserialize_CMD_ACK, 251)},
-			{7, new MavPacketInfo(Deserialize_USV_STATE, 40)},
+			{7, new MavPacketInfo(Deserialize_USV_STATE, 142)},
 			{8, new MavPacketInfo(Deserialize_USV_SET, 174)},
 		};
 
@@ -139,7 +139,8 @@ namespace MavLink
 				latitude = bitconverter.ToDouble(bytes, offset + 8),
 				speed = bitconverter.ToSingle(bytes, offset + 16),
 				heading = bitconverter.ToSingle(bytes, offset + 20),
-				battery_voltage = bitconverter.ToSingle(bytes, offset + 24),
+				Track = bitconverter.ToSingle(bytes, offset + 24),
+				battery_voltage = bitconverter.ToSingle(bytes, offset + 28),
 			};
 		}
 
@@ -224,8 +225,9 @@ namespace MavLink
 			bitconverter.GetBytes(msg.latitude, bytes, offset + 8);
 			bitconverter.GetBytes(msg.speed, bytes, offset + 16);
 			bitconverter.GetBytes(msg.heading, bytes, offset + 20);
-			bitconverter.GetBytes(msg.battery_voltage, bytes, offset + 24);
-			offset += 28;
+			bitconverter.GetBytes(msg.Track, bytes, offset + 24);
+			bitconverter.GetBytes(msg.battery_voltage, bytes, offset + 28);
+			offset += 32;
 			return 7;
 		}
 

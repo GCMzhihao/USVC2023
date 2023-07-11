@@ -10,11 +10,8 @@
 #ifndef APPLICATIONS_USER_SEM_H_
 #define APPLICATIONS_USER_SEM_H_
 
-extern rt_sem_t sem_1ms;
-extern rt_sem_t sem_2ms;
-extern rt_sem_t sem_5ms;
-extern rt_sem_t sem_10ms;
 extern rt_sem_t sem_20ms;
+extern rt_sem_t sem_25ms;
 extern rt_sem_t sem_50ms;
 extern rt_sem_t sem_100ms;
 extern rt_sem_t sem_200ms;

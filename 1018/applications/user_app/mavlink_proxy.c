@@ -71,6 +71,19 @@ void mavlink_msg_proxy(mavlink_message_t *msg , mavlink_status_t* status)
                 mav_length=mavlink_msg_to_send_buffer(mav_buffer, &mav_msg);
                 rt_device_write(uart1, 0, mav_buffer, mav_length);
             }
+
+            if(par_id==PARAM_USV_LEFT_RUDDER_MID||par_id==PARAM_LIST_REQUEST)
+            {
+                mavlink_msg_param_read_ack_pack(sys_id, dev_id, &mav_msg, PARAM_USV_LEFT_RUDDER_MID, parameters.left_rudder_mid_value);
+                mav_length=mavlink_msg_to_send_buffer(mav_buffer, &mav_msg);
+                rt_device_write(uart1, 0, mav_buffer, mav_length);
+            }
+            if(par_id==PARAM_USV_RIGHT_RUDDER_MID||par_id==PARAM_LIST_REQUEST)
+            {
+                mavlink_msg_param_read_ack_pack(sys_id, dev_id, &mav_msg, PARAM_USV_RIGHT_RUDDER_MID, parameters.right_rudder_mid_value);
+                mav_length=mavlink_msg_to_send_buffer(mav_buffer, &mav_msg);
+                rt_device_write(uart1, 0, mav_buffer, mav_length);
+            }
             rt_sem_release(sem_uart1_tx);//释放uart1发送
         }
         else if(msg->msgid==MAVLINK_MSG_ID_PARAM_WRITE)//写参数
@@ -127,6 +140,24 @@ void mavlink_msg_proxy(mavlink_message_t *msg , mavlink_status_t* status)
                 mav_length=mavlink_msg_to_send_buffer(mav_buffer, &mav_msg);
                 rt_device_write(uart1, 0, mav_buffer, mav_length);
                 break;
+            case PARAM_USV_LEFT_RUDDER_MID:
+                //USV_Heading_PID.Kd=mavlink_msg_param_write_get_value(msg);
+                parameters.left_rudder_mid_value=mavlink_msg_param_write_get_value(msg);
+                param_write();//保存参数
+                mavlink_msg_param_write_ack_pack(sys_id, dev_id, &mav_msg, par_id);
+                mav_length=mavlink_msg_to_send_buffer(mav_buffer, &mav_msg);
+                rt_device_write(uart1, 0, mav_buffer, mav_length);
+                break;
+            case PARAM_USV_RIGHT_RUDDER_MID:
+                //USV_Heading_PID.Kd=mavlink_msg_param_write_get_value(msg);
+                parameters.right_rudder_mid_value=mavlink_msg_param_write_get_value(msg);
+                param_write();//保存参数
+                mavlink_msg_param_write_ack_pack(sys_id, dev_id, &mav_msg, par_id);
+                mav_length=mavlink_msg_to_send_buffer(mav_buffer, &mav_msg);
+                rt_device_write(uart1, 0, mav_buffer, mav_length);
+                break;
+
+
             default:
                 break;
             }
@@ -189,10 +220,12 @@ void mavlink_msg_send(void)
            GPS.KSXT.Latitude,
            GPS.KSXT.Vel,
            GPS.KSXT.heading,
+           GPS.KSXT.TrackTure,
            USV_State.BatteryVoltage);
     mav_length+=mavlink_msg_to_send_buffer(&mav_buffer[mav_length], &mav_msg);
 //   mavlink_msg_rocker_pack(sys_id, dev_id, &mav_msg, rocker.leftX, rocker.leftY, rocker.rightX, rocker.rightY, rocker.switchA, rocker.switchB, rocker.switchC, rocker.switchD, rocker.switchE, rocker.switchF, rocker.switchG);
 //   mav_length+=mavlink_msg_to_send_buffer(&mav_buffer[mav_length], &mav_msg);
+
     rt_device_write(uart1, 0, mav_buffer, mav_length);
     rt_sem_release(sem_uart1_tx);//释放uart1发送
 }

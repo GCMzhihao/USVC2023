@@ -10,6 +10,6 @@
 #ifndef APPLICATIONS_USER_DRIVERS_MOTOR_H_
 #define APPLICATIONS_USER_DRIVERS_MOTOR_H_
 
-void MotorPWMSet(uint16_t pwm1,uint16_t pwm2,uint16_t pwm3);
+void MotorPWMSet(uint16_t pwm1,uint16_t pwm2,uint16_t pwm3,uint16_t pwm4);
 
 #endif /* APPLICATIONS_USER_DRIVERS_MOTOR_H_ */

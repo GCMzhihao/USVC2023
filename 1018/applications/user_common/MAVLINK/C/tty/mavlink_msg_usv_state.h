@@ -9,16 +9,17 @@ typedef struct __mavlink_usv_state_t {
  double latitude; /*<  */
  float speed; /*<  */
  float heading; /*<  */
+ float Track; /*<  */
  float battery_voltage; /*<  */
 } mavlink_usv_state_t;
 
-#define MAVLINK_MSG_ID_USV_STATE_LEN 28
-#define MAVLINK_MSG_ID_USV_STATE_MIN_LEN 28
-#define MAVLINK_MSG_ID_7_LEN 28
-#define MAVLINK_MSG_ID_7_MIN_LEN 28
+#define MAVLINK_MSG_ID_USV_STATE_LEN 32
+#define MAVLINK_MSG_ID_USV_STATE_MIN_LEN 32
+#define MAVLINK_MSG_ID_7_LEN 32
+#define MAVLINK_MSG_ID_7_MIN_LEN 32
 
-#define MAVLINK_MSG_ID_USV_STATE_CRC 40
-#define MAVLINK_MSG_ID_7_CRC 40
+#define MAVLINK_MSG_ID_USV_STATE_CRC 142
+#define MAVLINK_MSG_ID_7_CRC 142
 
 
 
@@ -26,23 +27,25 @@ typedef struct __mavlink_usv_state_t {
 #define MAVLINK_MESSAGE_INFO_USV_STATE { \
     7, \
     "USV_STATE", \
-    5, \
+    6, \
     {  { "longitude", NULL, MAVLINK_TYPE_DOUBLE, 0, 0, offsetof(mavlink_usv_state_t, longitude) }, \
          { "latitude", NULL, MAVLINK_TYPE_DOUBLE, 0, 8, offsetof(mavlink_usv_state_t, latitude) }, \
          { "speed", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_usv_state_t, speed) }, \
          { "heading", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_usv_state_t, heading) }, \
-         { "battery_voltage", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_usv_state_t, battery_voltage) }, \
+         { "Track", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_usv_state_t, Track) }, \
+         { "battery_voltage", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_usv_state_t, battery_voltage) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_USV_STATE { \
     "USV_STATE", \
-    5, \
+    6, \
     {  { "longitude", NULL, MAVLINK_TYPE_DOUBLE, 0, 0, offsetof(mavlink_usv_state_t, longitude) }, \
          { "latitude", NULL, MAVLINK_TYPE_DOUBLE, 0, 8, offsetof(mavlink_usv_state_t, latitude) }, \
          { "speed", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_usv_state_t, speed) }, \
          { "heading", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_usv_state_t, heading) }, \
-         { "battery_voltage", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_usv_state_t, battery_voltage) }, \
+         { "Track", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_usv_state_t, Track) }, \
+         { "battery_voltage", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_usv_state_t, battery_voltage) }, \
          } \
 }
 #endif
@@ -57,11 +60,12 @@ typedef struct __mavlink_usv_state_t {
  * @param latitude  
  * @param speed  
  * @param heading  
+ * @param Track  
  * @param battery_voltage  
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_usv_state_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               double longitude, double latitude, float speed, float heading, float battery_voltage)
+                               double longitude, double latitude, float speed, float heading, float Track, float battery_voltage)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_USV_STATE_LEN];
@@ -69,7 +73,8 @@ static inline uint16_t mavlink_msg_usv_state_pack(uint8_t system_id, uint8_t com
     _mav_put_double(buf, 8, latitude);
     _mav_put_float(buf, 16, speed);
     _mav_put_float(buf, 20, heading);
-    _mav_put_float(buf, 24, battery_voltage);
+    _mav_put_float(buf, 24, Track);
+    _mav_put_float(buf, 28, battery_voltage);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_USV_STATE_LEN);
 #else
@@ -78,6 +83,7 @@ static inline uint16_t mavlink_msg_usv_state_pack(uint8_t system_id, uint8_t com
     packet.latitude = latitude;
     packet.speed = speed;
     packet.heading = heading;
+    packet.Track = Track;
     packet.battery_voltage = battery_voltage;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_USV_STATE_LEN);
@@ -97,12 +103,13 @@ static inline uint16_t mavlink_msg_usv_state_pack(uint8_t system_id, uint8_t com
  * @param latitude  
  * @param speed  
  * @param heading  
+ * @param Track  
  * @param battery_voltage  
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_usv_state_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   double longitude,double latitude,float speed,float heading,float battery_voltage)
+                                   double longitude,double latitude,float speed,float heading,float Track,float battery_voltage)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_USV_STATE_LEN];
@@ -110,7 +117,8 @@ static inline uint16_t mavlink_msg_usv_state_pack_chan(uint8_t system_id, uint8_
     _mav_put_double(buf, 8, latitude);
     _mav_put_float(buf, 16, speed);
     _mav_put_float(buf, 20, heading);
-    _mav_put_float(buf, 24, battery_voltage);
+    _mav_put_float(buf, 24, Track);
+    _mav_put_float(buf, 28, battery_voltage);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_USV_STATE_LEN);
 #else
@@ -119,6 +127,7 @@ static inline uint16_t mavlink_msg_usv_state_pack_chan(uint8_t system_id, uint8_
     packet.latitude = latitude;
     packet.speed = speed;
     packet.heading = heading;
+    packet.Track = Track;
     packet.battery_voltage = battery_voltage;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_USV_STATE_LEN);
@@ -138,7 +147,7 @@ static inline uint16_t mavlink_msg_usv_state_pack_chan(uint8_t system_id, uint8_
  */
 static inline uint16_t mavlink_msg_usv_state_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_usv_state_t* usv_state)
 {
-    return mavlink_msg_usv_state_pack(system_id, component_id, msg, usv_state->longitude, usv_state->latitude, usv_state->speed, usv_state->heading, usv_state->battery_voltage);
+    return mavlink_msg_usv_state_pack(system_id, component_id, msg, usv_state->longitude, usv_state->latitude, usv_state->speed, usv_state->heading, usv_state->Track, usv_state->battery_voltage);
 }
 
 /**
@@ -152,7 +161,7 @@ static inline uint16_t mavlink_msg_usv_state_encode(uint8_t system_id, uint8_t c
  */
 static inline uint16_t mavlink_msg_usv_state_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_usv_state_t* usv_state)
 {
-    return mavlink_msg_usv_state_pack_chan(system_id, component_id, chan, msg, usv_state->longitude, usv_state->latitude, usv_state->speed, usv_state->heading, usv_state->battery_voltage);
+    return mavlink_msg_usv_state_pack_chan(system_id, component_id, chan, msg, usv_state->longitude, usv_state->latitude, usv_state->speed, usv_state->heading, usv_state->Track, usv_state->battery_voltage);
 }
 
 /**
@@ -163,11 +172,12 @@ static inline uint16_t mavlink_msg_usv_state_encode_chan(uint8_t system_id, uint
  * @param latitude  
  * @param speed  
  * @param heading  
+ * @param Track  
  * @param battery_voltage  
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_usv_state_send(mavlink_channel_t chan, double longitude, double latitude, float speed, float heading, float battery_voltage)
+static inline void mavlink_msg_usv_state_send(mavlink_channel_t chan, double longitude, double latitude, float speed, float heading, float Track, float battery_voltage)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_USV_STATE_LEN];
@@ -175,7 +185,8 @@ static inline void mavlink_msg_usv_state_send(mavlink_channel_t chan, double lon
     _mav_put_double(buf, 8, latitude);
     _mav_put_float(buf, 16, speed);
     _mav_put_float(buf, 20, heading);
-    _mav_put_float(buf, 24, battery_voltage);
+    _mav_put_float(buf, 24, Track);
+    _mav_put_float(buf, 28, battery_voltage);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_USV_STATE, buf, MAVLINK_MSG_ID_USV_STATE_MIN_LEN, MAVLINK_MSG_ID_USV_STATE_LEN, MAVLINK_MSG_ID_USV_STATE_CRC);
 #else
@@ -184,6 +195,7 @@ static inline void mavlink_msg_usv_state_send(mavlink_channel_t chan, double lon
     packet.latitude = latitude;
     packet.speed = speed;
     packet.heading = heading;
+    packet.Track = Track;
     packet.battery_voltage = battery_voltage;
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_USV_STATE, (const char *)&packet, MAVLINK_MSG_ID_USV_STATE_MIN_LEN, MAVLINK_MSG_ID_USV_STATE_LEN, MAVLINK_MSG_ID_USV_STATE_CRC);
@@ -198,7 +210,7 @@ static inline void mavlink_msg_usv_state_send(mavlink_channel_t chan, double lon
 static inline void mavlink_msg_usv_state_send_struct(mavlink_channel_t chan, const mavlink_usv_state_t* usv_state)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-    mavlink_msg_usv_state_send(chan, usv_state->longitude, usv_state->latitude, usv_state->speed, usv_state->heading, usv_state->battery_voltage);
+    mavlink_msg_usv_state_send(chan, usv_state->longitude, usv_state->latitude, usv_state->speed, usv_state->heading, usv_state->Track, usv_state->battery_voltage);
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_USV_STATE, (const char *)usv_state, MAVLINK_MSG_ID_USV_STATE_MIN_LEN, MAVLINK_MSG_ID_USV_STATE_LEN, MAVLINK_MSG_ID_USV_STATE_CRC);
 #endif
@@ -212,7 +224,7 @@ static inline void mavlink_msg_usv_state_send_struct(mavlink_channel_t chan, con
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_usv_state_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  double longitude, double latitude, float speed, float heading, float battery_voltage)
+static inline void mavlink_msg_usv_state_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  double longitude, double latitude, float speed, float heading, float Track, float battery_voltage)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
@@ -220,7 +232,8 @@ static inline void mavlink_msg_usv_state_send_buf(mavlink_message_t *msgbuf, mav
     _mav_put_double(buf, 8, latitude);
     _mav_put_float(buf, 16, speed);
     _mav_put_float(buf, 20, heading);
-    _mav_put_float(buf, 24, battery_voltage);
+    _mav_put_float(buf, 24, Track);
+    _mav_put_float(buf, 28, battery_voltage);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_USV_STATE, buf, MAVLINK_MSG_ID_USV_STATE_MIN_LEN, MAVLINK_MSG_ID_USV_STATE_LEN, MAVLINK_MSG_ID_USV_STATE_CRC);
 #else
@@ -229,6 +242,7 @@ static inline void mavlink_msg_usv_state_send_buf(mavlink_message_t *msgbuf, mav
     packet->latitude = latitude;
     packet->speed = speed;
     packet->heading = heading;
+    packet->Track = Track;
     packet->battery_voltage = battery_voltage;
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_USV_STATE, (const char *)packet, MAVLINK_MSG_ID_USV_STATE_MIN_LEN, MAVLINK_MSG_ID_USV_STATE_LEN, MAVLINK_MSG_ID_USV_STATE_CRC);
@@ -282,13 +296,23 @@ static inline float mavlink_msg_usv_state_get_heading(const mavlink_message_t* m
 }
 
 /**
+ * @brief Get field Track from usv_state message
+ *
+ * @return  
+ */
+static inline float mavlink_msg_usv_state_get_Track(const mavlink_message_t* msg)
+{
+    return _MAV_RETURN_float(msg,  24);
+}
+
+/**
  * @brief Get field battery_voltage from usv_state message
  *
  * @return  
  */
 static inline float mavlink_msg_usv_state_get_battery_voltage(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_float(msg,  24);
+    return _MAV_RETURN_float(msg,  28);
 }
 
 /**
@@ -304,6 +328,7 @@ static inline void mavlink_msg_usv_state_decode(const mavlink_message_t* msg, ma
     usv_state->latitude = mavlink_msg_usv_state_get_latitude(msg);
     usv_state->speed = mavlink_msg_usv_state_get_speed(msg);
     usv_state->heading = mavlink_msg_usv_state_get_heading(msg);
+    usv_state->Track = mavlink_msg_usv_state_get_Track(msg);
     usv_state->battery_voltage = mavlink_msg_usv_state_get_battery_voltage(msg);
 #else
         uint8_t len = msg->len < MAVLINK_MSG_ID_USV_STATE_LEN? msg->len : MAVLINK_MSG_ID_USV_STATE_LEN;

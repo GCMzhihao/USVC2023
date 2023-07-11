@@ -37,6 +37,10 @@
 		</entry>
 		<entry name="PARAM_USV_HEADING_D">
 		</entry>
+		<entry name="PARAM_USV_LEFT_RUDDER_MID">
+		</entry>
+		<entry name="PARAM_USV_RIGHT_RUDDER_MID">
+		</entry>
 	</enum>
 	<enum name="CMD_TYPE">
 		<entry value="1" name="CMD_UNLOCK">
@@ -97,6 +101,7 @@
 		<field type="double" name="latitude"></field>
 		<field type="float" name="speed"></field>
 		<field type="float" name="heading"></field>
+		<field type="float" name="Track"></field>
 		<field type="float" name="battery_voltage"></field>
     </message>
 	<message id="8" name="USV_SET">

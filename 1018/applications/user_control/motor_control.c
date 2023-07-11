@@ -15,9 +15,9 @@ void MotorControl(float dt)
     {
 
         if(sys_id==SYS_USV&&dev_id==0)//小黄船
-            MotorPWMSet(1000, 1500, 1400);
+            MotorPWMSet(1000, parameters.left_rudder_mid_value,parameters.right_rudder_mid_value,1250);
         else if(sys_id==SYS_USV&&dev_id>0)//小白船
-            MotorPWMSet(1000, 1480, 1500);
+            MotorPWMSet(1000,parameters.left_rudder_mid_value,parameters.right_rudder_mid_value,1000);
         return;
     }
      if(USV_State.Unlock==1)//解锁

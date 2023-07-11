@@ -291,29 +291,27 @@ void KSXT_Analysis(uint8_t *buf)
     uint8_t strcnt=NullCharReplaceComma(buf);
     if(strcnt==0)////校验失败
         return;
-    strcpy(GPS.KSXT.UTC.str,GetNMEA_Pos(buf, 1));
+//    strcpy(GPS.KSXT.UTC.str,GetNMEA_Pos(buf, 1));
     GPS.KSXT.Longitude=atof(GetNMEA_Pos(buf, 2));
     GPS.KSXT.Latitude=atof(GetNMEA_Pos(buf, 3));
-    GPS.KSXT.Altitude=atof(GetNMEA_Pos(buf, 4));
+//    GPS.KSXT.Altitude=atof(GetNMEA_Pos(buf, 4));
     GPS.KSXT.heading=atof(GetNMEA_Pos(buf, 5));
-    GPS.KSXT.pitch=atof(GetNMEA_Pos(buf, 6));
+//    GPS.KSXT.pitch=atof(GetNMEA_Pos(buf, 6));
     GPS.KSXT.TrackTure=atof(GetNMEA_Pos(buf, 7));
     GPS.KSXT.Vel=atof(GetNMEA_Pos(buf, 8))/3.6;
-    GPS.KSXT.Roll=atof(GetNMEA_Pos(buf, 9));
-    GPS.KSXT.PosQual=atoi(GetNMEA_Pos(buf, 10));
-    GPS.KSXT.HeadingQual=atoi(GetNMEA_Pos(buf, 11));
-    GPS.KSXT.SsolnSvs=atoi(GetNMEA_Pos(buf, 12));
-    GPS.KSXT.MsolnSvs=atoi(GetNMEA_Pos(buf, 13));
-    GPS.KSXT.PosEast=atof(GetNMEA_Pos(buf, 14));
-    GPS.KSXT.PosNorth=atof(GetNMEA_Pos(buf, 15));
-    GPS.KSXT.PosUp=atof(GetNMEA_Pos(buf, 16));
-    GPS.KSXT.VelEast=atof(GetNMEA_Pos(buf, 17));
-    GPS.KSXT.VelNorth=atof(GetNMEA_Pos(buf,18));
-    GPS.KSXT.VelUp=atof(GetNMEA_Pos(buf, 19));
-    GPS.KSXT.MSNR=atoi(GetNMEA_Pos(buf, 20));
-    GPS.KSXT.SSNR=atoi(GetNMEA_Pos(buf, 21));
-
-
+//    GPS.KSXT.Roll=atof(GetNMEA_Pos(buf, 9));
+//    GPS.KSXT.PosQual=atoi(GetNMEA_Pos(buf, 10));
+//    GPS.KSXT.HeadingQual=atoi(GetNMEA_Pos(buf, 11));
+//    GPS.KSXT.SsolnSvs=atoi(GetNMEA_Pos(buf, 12));
+//    GPS.KSXT.MsolnSvs=atoi(GetNMEA_Pos(buf, 13));
+//    GPS.KSXT.PosEast=atof(GetNMEA_Pos(buf, 14));
+//    GPS.KSXT.PosNorth=atof(GetNMEA_Pos(buf, 15));
+//    GPS.KSXT.PosUp=atof(GetNMEA_Pos(buf, 16));
+//    GPS.KSXT.VelEast=atof(GetNMEA_Pos(buf, 17));
+//    GPS.KSXT.VelNorth=atof(GetNMEA_Pos(buf,18));
+//    GPS.KSXT.VelUp=atof(GetNMEA_Pos(buf, 19));
+//    GPS.KSXT.MSNR=atoi(GetNMEA_Pos(buf, 20));
+//    GPS.KSXT.SSNR=atoi(GetNMEA_Pos(buf, 21));
 }
 void NMEA0183_Analysis(uint8_t *buf)
 {
@@ -327,7 +325,7 @@ void NMEA0183_Analysis(uint8_t *buf)
 //        GPGGA_Analysis(buf);
 //    else if(strstr((char*)buf,"#HEADINGA")!=NULL)
 //        Heading_Analysis(buf);
-    if(strstr((char*)buf,"$KSXT")!=NULL)
+    if(rt_strstr((char*)buf,"$KSXT")!=NULL)
         KSXT_Analysis(buf);
 
 

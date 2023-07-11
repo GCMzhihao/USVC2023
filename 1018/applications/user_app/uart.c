@@ -36,7 +36,7 @@ rt_err_t uart3_rx_callback(rt_device_t dev, rt_size_t size)
 void uart_init(void)
 {
     uart1 = rt_device_find("uart1");//P900
-    uart1_cfg.baud_rate=230400;
+    uart1_cfg.baud_rate=BAUD_RATE_230400;
     rt_device_control(uart1, RT_DEVICE_CTRL_CONFIG, &uart1_cfg);
     rt_device_open(uart1,RT_DEVICE_FLAG_DMA_RX);
     rt_device_set_rx_indicate(uart1,uart1_rx_callback);
@@ -69,7 +69,6 @@ void uart2_analysis(uint8_t c)
         {
             cnt=0;
             rx_state=1;
-            rt_memset(buf, 0, 200);
             buf[cnt++]=c;
         }
         break;
@@ -87,11 +86,14 @@ void uart2_analysis(uint8_t c)
         if(c=='\n')
         {
             buf[cnt++]=c;
+            buf[cnt]='\0';//终止符
             NMEA0183_Analysis(buf);
-            lla2xyz(GPS.KSXT.Longitude, GPS.KSXT.Latitude, GPS.KSXT.Altitude);
+            //lla2xyz(GPS.KSXT.Longitude, GPS.KSXT.Latitude, GPS.KSXT.Altitude);
            // printf("longitude: %lf,latitude: %lf,x: %f,Y: %f \n",GPS.KSXT.Longitude, GPS.KSXT.Latitude, USV_State.X, USV_State.Y);
         }
-
+        break;
+    default:
+        rx_state=0;
         break;
     }
 }

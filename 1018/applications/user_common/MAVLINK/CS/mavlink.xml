@@ -184,6 +184,11 @@
             
             </summary>
         </member>
+        <member name="F:MavLink.Msg_usv_state.Track">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="F:MavLink.Msg_usv_state.battery_voltage">
             <summary>
             

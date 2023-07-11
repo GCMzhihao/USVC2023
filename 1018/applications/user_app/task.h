@@ -10,20 +10,6 @@
 #ifndef APPLICATIONS_USER_TASK_H_
 #define APPLICATIONS_USER_TASK_H_
 
-
-
-#define TASK_2MS_PRIORITY               11
-#define TASK_2MS_STACK_SIZE             3000
-#define TASK_2MS_TIMESLICE              5
-
-#define TASK_5MS_PRIORITY               12
-#define TASK_5MS_STACK_SIZE             3000
-#define TASK_5MS_TIMESLICE              5
-
-#define TASK_10MS_PRIORITY              13
-#define TASK_10MS_STACK_SIZE            3000
-#define TASK_10MS_TIMESLICE             5
-
 #define TASK_20MS_PRIORITY              14
 #define TASK_20MS_STACK_SIZE            3000
 #define TASK_20MS_TIMESLICE             5
@@ -32,7 +18,7 @@
 #define TASK_50MS_STACK_SIZE            3000
 #define TASK_50MS_TIMESLICE             5
 
-#define TASK_100MS_PRIORITY             16
+#define TASK_100MS_PRIORITY             11
 #define TASK_100MS_STACK_SIZE           3000
 #define TASK_100MS_TIMESLICE            5
 

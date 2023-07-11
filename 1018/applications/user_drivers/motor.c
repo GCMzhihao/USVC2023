@@ -77,20 +77,22 @@ static int pwm4_init(void)
     }
 
     /* 设置PWM周期和脉冲宽度默认值 */
-    MotorPWMSet(1000,1500,700);
+    MotorPWMSet(1000,1500,700,700);
     /* 使能设备 */
     HAL_TIM_PWM_Start(&htim4,TIM_CHANNEL_1);
     HAL_TIM_PWM_Start(&htim4,TIM_CHANNEL_2);
     HAL_TIM_PWM_Start(&htim4,TIM_CHANNEL_3);
+    HAL_TIM_PWM_Start(&htim4,TIM_CHANNEL_4);
     return RT_EOK;
 }
 INIT_DEVICE_EXPORT(pwm4_init);
 
-void MotorPWMSet(uint16_t pwm1,uint16_t pwm2,uint16_t pwm3)
+void MotorPWMSet(uint16_t pwm1,uint16_t pwm2,uint16_t pwm3,uint16_t pwm4)
 {
     __HAL_TIM_SetCompare(&htim4, TIM_CHANNEL_1, pwm1);
     __HAL_TIM_SetCompare(&htim4, TIM_CHANNEL_2, pwm2);
     __HAL_TIM_SetCompare(&htim4, TIM_CHANNEL_3, pwm3);
+    __HAL_TIM_SetCompare(&htim4, TIM_CHANNEL_4, pwm4);
 }
 
 

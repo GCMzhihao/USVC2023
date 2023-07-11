@@ -39,6 +39,7 @@
 #include <parameter.h>
 #include <nvic.h>
 #include <sem.h>
+#include <mutex.h>
 #include <task.h>
 #include <timer.h>
 #include <init.h>
