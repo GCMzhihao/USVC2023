@@ -11,6 +11,7 @@
 mavlink_rocker_t rocker;
 uint8_t sys_id;
 uint8_t dev_id;
+uint8_t uart3_cnt=0;
 
 void mavlink_msg_proxy(mavlink_message_t *msg , mavlink_status_t* status)
 {
@@ -20,14 +21,14 @@ void mavlink_msg_proxy(mavlink_message_t *msg , mavlink_status_t* status)
     if(msg->sysid == SYS_ROCKER)
     {
         USV_Rocker_lost_cnt=0;//丢失计数清零
-        USV_State.AutoSail=0;
+       // USV_State.AutoSail=0;
         mavlink_msg_rocker_decode(msg, &rocker);
     }
-    else if(msg->sysid==SYS_GSTATION)
+    else if(msg->sysid==SYS_GSTATION&&msg->compid==dev_id)
     {
         if(msg->msgid==MAVLINK_MSG_ID_ROCKER)
         {
-            USV_State.AutoSail=0;
+            //USV_State.AutoSail=0;
             mavlink_msg_rocker_decode(msg, &rocker);
         }
         else if(msg->msgid==MAVLINK_MSG_ID_PARAM_READ)//读参数请求
@@ -199,7 +200,7 @@ void mavlink_msg_proxy(mavlink_message_t *msg , mavlink_status_t* status)
                 &&mavlink_msg_usv_set_get_SYS_TYPE(msg)==sys_id
                 &&mavlink_msg_usv_set_get_DEV_ID(msg)==dev_id)
         {
-            USV_State.AutoSail=1;
+            //USV_State.AutoSail=1;
             USV_SET.Speed=mavlink_msg_usv_set_get_Speed(msg);
             USV_SET.Heading=mavlink_msg_usv_set_get_Heading(msg);
         }
@@ -228,4 +229,12 @@ void mavlink_msg_send(void)
 
     rt_device_write(uart1, 0, mav_buffer, mav_length);
     rt_sem_release(sem_uart1_tx);//释放uart1发送
+
+    uart3_cnt++;
+    if(uart3_cnt==10)
+    {
+        rt_device_write(uart3, 0, mav_buffer, mav_length);
+        uart3_cnt=0;
+    }
+
 }

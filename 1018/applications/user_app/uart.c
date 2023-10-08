@@ -36,7 +36,7 @@ rt_err_t uart3_rx_callback(rt_device_t dev, rt_size_t size)
 void uart_init(void)
 {
     uart1 = rt_device_find("uart1");//P900
-    uart1_cfg.baud_rate=BAUD_RATE_230400;
+    uart1_cfg.baud_rate=BAUD_RATE_115200;
     rt_device_control(uart1, RT_DEVICE_CTRL_CONFIG, &uart1_cfg);
     rt_device_open(uart1,RT_DEVICE_FLAG_DMA_RX);
     rt_device_set_rx_indicate(uart1,uart1_rx_callback);
@@ -47,8 +47,8 @@ void uart_init(void)
     rt_device_open(uart2,RT_DEVICE_FLAG_DMA_RX);
     rt_device_set_rx_indicate(uart2,uart2_rx_callback);
 
-    uart3 = rt_device_find("uart3");//遥控器
-    uart3_config.baud_rate = BAUD_RATE_100000;
+    uart3 = rt_device_find("uart3");//DTU
+    uart3_config.baud_rate = BAUD_RATE_115200;
     uart3_config.parity=PARITY_EVEN;
     uart3_config.data_bits=DATA_BITS_9;
     uart3_config.stop_bits=STOP_BITS_2;

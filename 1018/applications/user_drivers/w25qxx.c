@@ -213,7 +213,7 @@ static int w25q_init(void)
         }
         else
         {
-            w25qxx_debug ( "error flash capacity\r\n" );
+            w25qxx_debug ( "error flash capacity\ ++r\n" );
             flash_info.sector_count = 0;
         }
 

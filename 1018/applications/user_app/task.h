@@ -30,7 +30,7 @@
 #define TASK_1000MS_STACK_SIZE          3000
 #define TASK_1000MS_TIMESLICE           5
 
-#define TASK_UART1_PRIORITY             23
+#define TASK_UART1_PRIORITY             12
 #define TASK_UART1_STACK_SIZE           3000
 #define TASK_UART1_TIMESLICE            10
 

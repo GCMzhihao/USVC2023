@@ -38,6 +38,7 @@ void task_50ms_entry(void* parameter)
     {
         rt_sem_take(sem_50ms, RT_WAITING_FOREVER);
         //rt_sem_control(sem_50ms, RT_IPC_CMD_RESET, 0);//清零信号量
+       // mavlink_msg_send();
         led_run();
     }
 }
@@ -61,6 +62,7 @@ void task_200ms_entry(void* parameter)
     {
         rt_sem_take(sem_200ms, RT_WAITING_FOREVER);
        // rt_sem_control(sem_200ms, RT_IPC_CMD_RESET, 0);//清零信号量
+        //mavlink_msg_send();
         USV_Rocker_lost_check();
         MotorControl(dt);
     }
@@ -109,7 +111,7 @@ void task_uart2_entry(void* parameter)//GPS
         uart2_analysis(ch);
     }
 }
-void task_uart3_entry(void* parameter)//Sbus
+void task_uart3_entry(void* parameter)//
 {
     uint8_t ch;
     while (1)

@@ -296,8 +296,16 @@ void KSXT_Analysis(uint8_t *buf)
     GPS.KSXT.Latitude=atof(GetNMEA_Pos(buf, 3));
 //    GPS.KSXT.Altitude=atof(GetNMEA_Pos(buf, 4));
     GPS.KSXT.heading=atof(GetNMEA_Pos(buf, 5));
+    while ( GPS.KSXT.heading > 180)
+        GPS.KSXT.heading-= 360;
+    while ( GPS.KSXT.heading < -180)
+        GPS.KSXT.heading += 360;
 //    GPS.KSXT.pitch=atof(GetNMEA_Pos(buf, 6));
     GPS.KSXT.TrackTure=atof(GetNMEA_Pos(buf, 7));
+    while ( GPS.KSXT.TrackTure > 180)
+        GPS.KSXT.TrackTure-= 360;
+    while ( GPS.KSXT.TrackTure < -180)
+        GPS.KSXT.TrackTure += 360;
     GPS.KSXT.Vel=atof(GetNMEA_Pos(buf, 8))/3.6;
 //    GPS.KSXT.Roll=atof(GetNMEA_Pos(buf, 9));
 //    GPS.KSXT.PosQual=atoi(GetNMEA_Pos(buf, 10));

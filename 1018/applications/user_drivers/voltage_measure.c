@@ -36,10 +36,10 @@ void voltage_measure(void)
     rt_adc_disable(adc1_dev, 8);
     USV_State.BatteryVoltage=tmp*3.28/4096*11;
 
-    if(USV_State.BatteryVoltage<22.0f)
-    {
-        //USV_State.LowPower=1;
-        BuzzerChangeState(beep_help);
-    }
+//    if(USV_State.BatteryVoltage<22.0f)
+//    {
+//        //USV_State.LowPower=1;
+//        BuzzerChangeState(beep_help);
+//    }
 }
 

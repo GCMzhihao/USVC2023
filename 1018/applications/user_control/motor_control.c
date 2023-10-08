@@ -14,10 +14,14 @@ void MotorControl(float dt)
     if(USV_State.Unlock==0)//未解锁
     {
 
-        if(sys_id==SYS_USV&&dev_id==0)//小黄船
+        if(sys_id==SYS_USV&&dev_id==0)//大黄船
             MotorPWMSet(1000, parameters.left_rudder_mid_value,parameters.right_rudder_mid_value,1250);
-        else if(sys_id==SYS_USV&&dev_id>0)//小白船
+        else if(sys_id==SYS_USV&&dev_id>0&&dev_id<10)//小白船
             MotorPWMSet(1000,parameters.left_rudder_mid_value,parameters.right_rudder_mid_value,1000);
+        if(sys_id==SYS_USV&&dev_id>10)//大黄船
+            MotorPWMSet(1000, parameters.left_rudder_mid_value,parameters.right_rudder_mid_value,1250);
+        USV_Speed_PID.Integral=0;
+        USV_Heading_PID.Integral=0;
         return;
     }
      if(USV_State.Unlock==1)//解锁
